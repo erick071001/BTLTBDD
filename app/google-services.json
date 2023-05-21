@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "742934720906",
+    "project_id": "btltb-354b0",
+    "storage_bucket": "btltb-354b0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:742934720906:android:ed0702de39acde3f459873",
+        "android_client_info": {
+          "package_name": "com.example.shopuin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "742934720906-3eqj0lnbdl8urhot67afkovn6bii02ec.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopuin",
+            "certificate_hash": "e58abdd0ec30c4679a173b3258928af34c47a0e8"
+          }
+        },
+        {
+          "client_id": "742934720906-vr7lmo8tmq353l1djdm2c9qsbq5kqh2g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfZcurt6A1y75zSymHXonGeKF8-ZS1vuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "742934720906-vr7lmo8tmq353l1djdm2c9qsbq5kqh2g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
