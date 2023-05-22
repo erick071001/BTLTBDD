@@ -4,17 +4,12 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_vector_dashboard"
-        android:title="@string/title_dashboard" />
-
-    <item
-        android:id="@+id/navigation_orders"
-        android:icon="@drawable/ic_vector_orders"
-        android:title="@string/title_orders" />
+        android:title="Tranh chính" />
 
     <item
         android:id="@+id/navigation_mycart"
         android:icon="@drawable/ic_vector_cart"
-        android:title="@string/title_my_cart" />
+        android:title="Giỏ hàng" />
 
 
 </menu>

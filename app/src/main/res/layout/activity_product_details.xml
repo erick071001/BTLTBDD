@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.ProductDetailsActivity">
+    tools:context=".activity.ProductDetailsActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_product_details_activity"
@@ -20,11 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:paddingStart="@dimen/toolbar_title_paddingStart"
+            android:paddingStart="-25dp"
             android:paddingEnd="0dp"
-            android:text="@string/title_product_details"
+            android:text="Chi tiết sản phẩm"
             android:textColor="@color/white"
-            android:textSize="@dimen/toolbar_title_text_size"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
@@ -46,10 +46,10 @@
             <ImageView
                 android:id="@+id/iv_product_detail_image"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/product_detail_image_height"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="1:1"
                 android:background="@color/colorImageViewBackground"
-                android:contentDescription="@string/content_description"
-                android:scaleType="fitXY"
+                android:scaleType="centerInside"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -58,10 +58,10 @@
                 android:id="@+id/ll_product_details_title_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/product_details_title_price_marginTop"
+                android:layout_marginTop="16dp"
                 android:background="@color/dashboard_item_details_bg"
                 android:orientation="vertical"
-                android:padding="@dimen/product_details_title_price_padding"
+                android:padding="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_product_detail_image">
@@ -71,9 +71,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/item_value_text_color"
-                    android:textSize="@dimen/product_details_title_textSize"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="Product Title" />
+                    tools:text="Tên Sản phẩm" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_product_details_price"
@@ -81,7 +81,7 @@
                     android:textStyle="bold"
                     android:layout_height="wrap_content"
                     android:textColor="@color/item_value_text_color"
-                    android:textSize="@dimen/product_details_price_textSize"
+                    android:textSize="14sp"
                     tools:text="$100" />
             </LinearLayout>
 
@@ -89,11 +89,11 @@
                 android:id="@+id/tv_product_details_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/product_details_label_margin"
+                android:layout_margin="16sp"
                 android:textStyle="bold"
-                android:text="@string/lbl_product_description"
+                android:text="Thông tin"
                 android:textColor="@color/item_value_text_color"
-                android:textSize="@dimen/product_details_label_textSize"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_product_details_title_price" />
@@ -102,11 +102,11 @@
                 android:id="@+id/tv_product_details_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/product_details_label_margin"
-                android:layout_marginEnd="@dimen/product_details_label_margin"
+                android:layout_marginStart="16sp"
+                android:layout_marginEnd="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/product_details_description_textSize"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_product_details_label"
@@ -116,7 +116,7 @@
                 android:id="@+id/ll_product_details_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/product_details_label_margin"
+                android:layout_margin="16sp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -127,23 +127,23 @@
                     android:id="@+id/tv_product_details_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/product_details_stock_quantity_paddingStartEnd"
-                    android:text="@string/lbl_product_details_stock_quantity"
+                    android:layout_marginEnd="16dp"
+                    android:text="Số lượng hàng"
                     android:textStyle="bold"
                     android:textColor="@color/item_value_text_color"
-                    android:textSize="@dimen/product_details_label_textSize" />
+                    android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_product_details_available_quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/item_grey_border_background"
-                    android:paddingStart="@dimen/product_details_stock_quantity_paddingStartEnd"
-                    android:paddingTop="@dimen/product_details_stock_quantity_paddingTopBottom"
-                    android:paddingEnd="@dimen/product_details_stock_quantity_paddingStartEnd"
-                    android:paddingBottom="@dimen/product_details_stock_quantity_paddingTopBottom"
+                    android:paddingStart="16dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/product_details_stock_quantity_textSize"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     tools:text="5" />
             </LinearLayout>
@@ -155,7 +155,7 @@
                 android:id="@+id/ll_product_details_shipping_charge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/product_details_label_margin"
+                android:layout_margin="16sp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,22 +167,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
-                    android:layout_marginEnd="@dimen/product_details_stock_quantity_paddingStartEnd"
-                    android:text="@string/lbl_shipping_charge"
+                    android:layout_marginEnd="16dp"
+                    android:text="Phí vận chuyển"
                     android:textColor="@color/item_value_text_color"
-                    android:textSize="@dimen/product_details_label_textSize" />
+                    android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_product_details_shipping_charge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/item_grey_border_background"
-                    android:paddingStart="@dimen/product_details_stock_quantity_paddingStartEnd"
-                    android:paddingTop="@dimen/product_details_stock_quantity_paddingTopBottom"
-                    android:paddingEnd="@dimen/product_details_stock_quantity_paddingStartEnd"
-                    android:paddingBottom="@dimen/product_details_stock_quantity_paddingTopBottom"
+                    android:paddingStart="16dp"
+                    android:paddingTop="5dp"
+                    android:paddingEnd="16dp"
+                    android:paddingBottom="5dp"
                     android:textColor="@color/colorSecondaryText"
-                    android:textSize="@dimen/product_details_stock_quantity_textSize"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     tools:text="N100" />
             </LinearLayout>
@@ -199,11 +199,11 @@
                 android:background="@drawable/button_background"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:paddingTop="@dimen/btn_padding"
-                android:paddingBottom="@dimen/btn_padding"
-                android:text="@string/btn_lbl_add_to_cart"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="Thêm vào giỏ hàng"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/btn_textSize"
+                android:textSize="18sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -222,11 +222,11 @@
                 android:background="@drawable/button_background"
                 android:foreground="?attr/selectableItemBackground"
                 android:gravity="center"
-                android:paddingTop="@dimen/btn_padding"
-                android:paddingBottom="@dimen/btn_padding"
-                android:text="@string/btn_lbl_go_to_cart"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="Tới giỏ hàng"
                 android:textColor="@android:color/white"
-                android:textSize="@dimen/btn_textSize"
+                android:textSize="18sp"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -234,14 +234,7 @@
                 tools:visibility="visible" />
 
 
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
 
 
     </ScrollView>

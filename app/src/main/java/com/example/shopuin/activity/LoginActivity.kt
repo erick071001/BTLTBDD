@@ -75,7 +75,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         return when {
             TextUtils.isEmpty(binding.etEmail.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(
-                    resources.getString(R.string.err_msg_enter_email),
+                    "Nhập Email",
                     errorMessage = true
                 )
                 false
@@ -83,7 +83,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
             TextUtils.isEmpty(binding.etPassword.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(
-                    resources.getString(R.string.err_msg_enter_password),
+                    "Nhập mật khẩu",
                     errorMessage = true
                 )
                 false
@@ -100,7 +100,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     private fun logInRegisteredUser() {
 
         if (validateLoginDetails()) {
-            showProgressDialog(resources.getString(R.string.please_wait))
+            showProgressDialog("Loading")
 
             val email: String = binding.etEmail.text.toString().trim() { it <= ' ' }
             val password: String = binding.etPassword.text.toString().trim() { it <= ' ' }

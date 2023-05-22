@@ -65,7 +65,7 @@ class RegisterActivity : BaseActivity() {
                 binding.etFirstName.text.toString()
                     .trim { it <= ' ' }) -> {
                 showErrorSnackBar(
-                    resources.getString(R.string.err_msg_enter_first_name),
+                   "Nhập Họ tên",
                     errorMessage = true
                 )
                 false
@@ -74,7 +74,7 @@ class RegisterActivity : BaseActivity() {
                 binding.etLastName.text.toString()
                     .trim { it <= ' ' }) -> {
                 showErrorSnackBar(
-                    resources.getString(R.string.err_msg_enter_last_name),
+                   "Nhập địa chỉ",
                     errorMessage = true
                 )
                 false
@@ -82,21 +82,21 @@ class RegisterActivity : BaseActivity() {
 
             TextUtils.isEmpty(binding.etEmail.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(
-                    resources.getString(R.string.err_msg_enter_email),
+                   "Nhập Email",
                     errorMessage = true
                 )
                 false
             }
             TextUtils.isEmpty(binding.etPassword.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(
-                    resources.getString(R.string.err_msg_enter_password),
+                   "Nhập mật khẩu",
                     errorMessage = true
                 )
                 false
             }
             TextUtils.isEmpty(binding.etConfirmPassword.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(
-                    resources.getString(R.string.err_msg_enter_confirm_password),
+                    "Xác nhận mật khẩu",
                     errorMessage = true
                 )
                 false
@@ -105,14 +105,14 @@ class RegisterActivity : BaseActivity() {
                 .trim { it <= ' ' } != binding.etConfirmPassword.text.toString()
                 .trim { it <= ' ' } -> {
                 showErrorSnackBar(
-                    resources.getString(R.string.err_msg_password_and_confirm_password_mismatch),
+                    "Mật khẩu không trùng khớp",
                     errorMessage = true
                 )
                 false
             }
             !binding.cbTermsAndCondition.isChecked -> {
                 showErrorSnackBar(
-                    resources.getString(R.string.err_msg_agree_terms_and_condition),
+                    "Chấp thuận điều khoản sử dụng",
                     errorMessage = true
                 )
                 false
@@ -131,7 +131,6 @@ class RegisterActivity : BaseActivity() {
 
     private fun registerUser() {
         if (validateRegisterDetails()) {
-            showProgressDialog(resources.getString(R.string.please_wait))
             val email: String = binding.etEmail.text.toString().trim() { it <= ' ' }
             val password: String = binding.etPassword.text.toString().trim() { it <= ' ' }
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
@@ -147,16 +146,12 @@ class RegisterActivity : BaseActivity() {
 
                         )
                         FirestoreClass().registerUser(this@RegisterActivity, user)
-
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
                         hideProgressDialog()
-
-
                     } else {
                         hideProgressDialog()
-                        // If the registration is not successful then show error message
                         showErrorSnackBar(
                             task.exception!!.message.toString(),
                             true
@@ -170,12 +165,9 @@ class RegisterActivity : BaseActivity() {
     }
 
     fun userRegistrationSuccess(){
-
-        //Hide the progress dialog
-        hideProgressDialog()
         Toast.makeText(
             this@RegisterActivity,
-            resources.getString(R.string.register_success), Toast.LENGTH_SHORT
+            "Đăng ký tài khoản thành công", Toast.LENGTH_SHORT
         ).show()
 
     }

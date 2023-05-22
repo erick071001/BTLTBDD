@@ -11,7 +11,6 @@ import com.example.shopuin.control.FirestoreClass
 import com.example.shopuin.databinding.ActivityProductDetailsBinding
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Products
-import com.example.shopuin.utils.Constants
 
 class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     lateinit var binding: ActivityProductDetailsBinding
@@ -26,13 +25,12 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         setContentView(binding.root)
         setupActionBar()
 
-        if (intent.hasExtra(Constants.EXTRA_PRODUCT_ID)) {
-            mProductId = intent.getStringExtra(Constants.EXTRA_PRODUCT_ID)!!
+        if (intent.hasExtra("extra_product_id")) {
+            mProductId = intent.getStringExtra("extra_product_id")!!
 
         }
-        if (intent.hasExtra(Constants.EXTRA_PRODUCT_OWNER_ID)) {
-            mProductOwnerId = intent.getStringExtra(Constants.EXTRA_PRODUCT_OWNER_ID)!!
-
+        if (intent.hasExtra("extra_product_owner_id")) {
+            mProductOwnerId = intent.getStringExtra("extra_product_owner_id")!!
         }
         if (FirestoreClass().getCurrentUserId() == mProductOwnerId
         ) {
@@ -48,7 +46,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun getProductDetails() {
-        showProgressDialog(resources.getString(R.string.please_wait))
+        showProgressDialog("Loading")
         FirestoreClass().getProductDetails(this, mProductId)
     }
 
@@ -69,10 +67,10 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
             .placeholder(R.drawable.ic_user_placeholder) // Default placeholder if the image fails to load
             .into( binding.ivProductDetailImage)
         binding.tvProductDetailsTitle.text = product.title
-        binding.tvProductDetailsPrice.text = "₦${product.price}"
+        binding.tvProductDetailsPrice.text = "${product.price}$"
         binding.tvProductDetailsDescription.text = product.description
         binding.tvProductDetailsAvailableQuantity.text = product.stock_quantity
-        binding.tvProductDetailsShippingCharge.text = "₦${product.shipping_charge}"
+        binding.tvProductDetailsShippingCharge.text = "${product.shipping_charge}$"
 
         if (product.stock_quantity.toInt() == 0) {
             hideProgressDialog()
@@ -84,8 +82,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
                 )
 
             )
-            binding.tvProductDetailsAvailableQuantity.text =
-                resources.getString(R.string.lb_out_of_stock)
+            binding.tvProductDetailsAvailableQuantity.text = "Không còn sản phẩm"
 
         } else {
             if (FirestoreClass().getCurrentUserId() == product.user_id) {
@@ -119,11 +116,11 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
             mProductDetails.title,
             mProductDetails.price,
             mProductDetails.image,
-            Constants.DEFAULT_CART_QUANTITY,
+            "1",
             "", "", mProductDetails.shipping_charge
         )
 
-        showProgressDialog(resources.getString(R.string.please_wait))
+        showProgressDialog("Loading")
         FirestoreClass().addCartItems(this, cartItem)
     }
 
@@ -131,7 +128,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         hideProgressDialog()
         Toast.makeText(
             this@ProductDetailsActivity,
-            resources.getString(R.string.success_message_item_added_to_cart),
+           "Thêm thành công vào giỏ hàng",
             Toast.LENGTH_SHORT
         ).show()
 

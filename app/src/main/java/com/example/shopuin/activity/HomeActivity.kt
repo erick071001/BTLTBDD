@@ -1,6 +1,8 @@
 package com.example.shopuin.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.core.content.ContextCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -11,7 +13,6 @@ import com.example.shopuin.databinding.ActivityHomeBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : BaseActivity() {
-
 
     lateinit var binding: ActivityHomeBinding
 
@@ -31,7 +32,6 @@ class HomeActivity : BaseActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,
-//                R.id.navigation_orders,
                 R.id.navigation_mycart,
             )
         )
@@ -39,7 +39,15 @@ class HomeActivity : BaseActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_settings -> {
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
 
+    }
     override fun onBackPressed() {
         doubleBackToExit()
     }

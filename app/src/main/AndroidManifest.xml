@@ -17,14 +17,10 @@
         <activity
             android:name=".activity.HomeActivity"
             android:exported="false"
-            android:label="@string/title_activity_home"
+            android:label="HomeActivity"
             android:screenOrientation="portrait" />
 
-<!--        <activity-->
-<!--            android:name=".ui.activities.MyOrderDetailsActivity"-->
-<!--            android:exported="false"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/Theme.Shopuin.NoActionBar" />-->
+
 <!--        <activity-->
 <!--            android:name=".ui.activities.CheckoutActivity"-->
 <!--            android:exported="false"-->
@@ -45,11 +41,11 @@
 <!--            android:exported="false"-->
 <!--            android:screenOrientation="portrait"-->
 <!--            android:theme="@style/Theme.Shopuin.NoActionBar" />-->
-<!--        <activity-->
-<!--            android:name=".ui.activities.ProductDetailsActivity"-->
-<!--            android:exported="false"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/Theme.Shopuin.NoActionBar" />-->
+        <activity
+            android:name=".activity.ProductDetailsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Shopuin.NoActionBar" />
 
 <!--        <activity-->
 <!--            android:name=".ui.activities.SettingsActivity"-->

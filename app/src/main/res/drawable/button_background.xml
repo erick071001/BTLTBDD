@@ -8,6 +8,6 @@
         android:endColor="#4D04a9bd"
         android:startColor="#6604a9bd"
         />
-    <corners android:radius="@dimen/button_background_radius"/>
+    <corners android:radius="15dp"/>
 
 </shape>

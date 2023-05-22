@@ -6,34 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorOffWhite"
-    tools:context=".ui.activities.CartListActivity">
+    tools:context=".fragment.MyCartFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cart_items_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/rv_cart_items_marginTop"
+        android:layout_marginTop="16dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/ll_checkout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_cart_list_activity" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_no_cart_item_found"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/no_cart_item_found"
-        android:textAlignment="center"
-        android:textColor="@color/colorSecondaryText"
-        android:textSize="@dimen/no_data_found_textSize"
-        app:layout_constraintBottom_toTopOf="@id/ll_checkout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_cart_list_activity" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/ll_checkout"
@@ -41,7 +25,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="@dimen/ll_checkout_padding"
+        android:padding="16dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,9 +41,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/lbl_subtotal"
+                android:text="Giá sản phẩm"
                 android:textColor="@color/colorDarkGrey"
-                android:textSize="@dimen/checkout_label_value_textSize" />
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_sub_total"
@@ -67,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/checkout_label_value_textSize"
+                android:textSize="18sp"
                 tools:text="N100" />
         </LinearLayout>
 
@@ -80,9 +64,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/lbl_shipping_charge"
+                android:text="Phí vận chuyển"
                 android:textColor="@color/colorDarkGrey"
-                android:textSize="@dimen/checkout_label_value_textSize" />
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_shipping_charge"
@@ -90,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/checkout_label_value_textSize"
+                android:textSize="18sp"
                 tools:text="N10" />
         </LinearLayout>
 
@@ -104,9 +88,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textStyle="bold"
-                android:text="@string/lbl_total_amount"
+                android:text="Tổng"
                 android:textColor="@color/colorDarkGrey"
-                android:textSize="@dimen/checkout_label_value_textSize" />
+                android:textSize="18sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_total_amount"
@@ -115,7 +99,7 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/colorDarkGrey"
-                android:textSize="@dimen/checkout_label_value_textSize"
+                android:textSize="18sp"
                 tools:text="N110" />
         </LinearLayout>
 
@@ -130,11 +114,11 @@
             android:background="@drawable/button_background"
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
-            android:paddingTop="@dimen/btn_padding"
-            android:paddingBottom="@dimen/btn_padding"
-            android:text="@string/btn_lbl_checkout"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Đặt hàng"
             android:textColor="@android:color/white"
-            android:textSize="@dimen/btn_textSize"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ll_terms_and_condition" />

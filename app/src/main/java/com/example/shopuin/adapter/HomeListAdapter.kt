@@ -12,7 +12,7 @@ import com.example.shopuin.R
 import com.example.shopuin.activity.ProductDetailsActivity
 import com.example.shopuin.databinding.ItemHomeBinding
 import com.example.shopuin.models.Products
-import com.example.shopuin.utils.Constants
+
 
 class HomeListAdapter(
     private val context: Context,
@@ -34,24 +34,22 @@ class HomeListAdapter(
 
             binding.tvDashboardItemTitle.text = products.title
             binding.tvDashboardItemPrice.text =
-                "₦${products.price}"
+                "${products.price}$"
             binding.tvDashboardItemDescription.text =
                 products.description
 
             itemView.setOnClickListener {
                 val intent = Intent(context, ProductDetailsActivity::class.java)
-                intent.putExtra(Constants.EXTRA_PRODUCT_ID, products.product_id)
-
+                intent.putExtra("extra_product_id", products.product_id)
                 intent.putExtra(
-                    Constants.EXTRA_PRODUCT_OWNER_ID,
+                    "extra_product_owner_id",
                     products.user_id
-                ) // the id of the user who uploaded the products
+                )
                 context.startActivity(intent)
 
             }
 
             animateView(itemView)
-
 
         }
 

@@ -12,11 +12,7 @@ import com.example.shopuin.models.Products
 
 class HomeFragment :  BaseFragment() {
 
-    //private lateinit var dashboardViewModel: DashboardViewModel
     private var _binding: FragmentHomeBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding
 
 
@@ -35,47 +31,22 @@ class HomeFragment :  BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-
         return binding?.root
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.dashboard_menu, menu)
+        inflater.inflate(R.menu.home_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
 
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_settings -> {
-
-//                startActivity(Intent(activity, SettingsActivity::class.java))
-
-                return true
-            }
-        }
-
-
-        return super.onOptionsItemSelected(item)
-
-    }
-
-
     fun successDashboardItemsList(dashboardItemList: ArrayList<Products>) {
         hideProgressDialog()
-        /* for (item in dashboardItemList){
-             Log.i("Item Title", item.title)
-         }*/
-
-        binding?.let {
+         binding?.let {
             if (dashboardItemList.size > 0) {
                 binding!!.rvDashboardItems.visibility = View.VISIBLE
-                binding!!.tvNoDashboardItemsFound.visibility = View.GONE
-
-                // spanCount is set to 2 after every 5th item
                 val layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                 layoutManager.spanSizeLookup = object:GridLayoutManager.SpanSizeLookup(){
                     override fun getSpanSize(position: Int): Int {
@@ -90,8 +61,6 @@ class HomeFragment :  BaseFragment() {
 
             } else {
                 binding!!.rvDashboardItems.visibility = View.GONE
-
-                binding!!.tvNoDashboardItemsFound.visibility = View.VISIBLE
             }
         }
 
@@ -101,7 +70,7 @@ class HomeFragment :  BaseFragment() {
     }
 
     private fun getDashboardItemList() {
-        showProgressDialog(resources.getString(R.string.please_wait))
+        showProgressDialog("Loading")
         FirestoreClass().getHomeItemsList(this@HomeFragment)
 
     }

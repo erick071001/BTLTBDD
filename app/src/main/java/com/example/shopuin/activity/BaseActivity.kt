@@ -62,7 +62,7 @@ open class BaseActivity : AppCompatActivity() {
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(
             this,
-            resources.getString(R.string.please_click_back_again_to_exit),
+            "Nhấn back để thoát",
             Toast.LENGTH_SHORT
         ).show()
 

@@ -32,9 +32,9 @@ class ForgotPasswordActivity : BaseActivity() {
         binding.btnSubmit.setOnClickListener {
             val email: String = binding.etEmail.text.toString().trim() { it <= ' ' }
             if (email.isEmpty()) {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
+                showErrorSnackBar("Vui lòng nhập email", true)
             } else {
-                showProgressDialog(resources.getString(R.string.please_wait))
+                showProgressDialog("Loading")
                 FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                     .addOnCompleteListener { task ->
                         hideProgressDialog()
