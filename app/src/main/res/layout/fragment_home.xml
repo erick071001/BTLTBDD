@@ -8,7 +8,7 @@
     tools:context=".fragment.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_dashboard_items"
+        android:id="@+id/rv_home_items"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"

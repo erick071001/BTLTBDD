@@ -65,7 +65,6 @@ open class BaseActivity : AppCompatActivity() {
             "Nhấn back để thoát",
             Toast.LENGTH_SHORT
         ).show()
-
         @Suppress("DEPRECATION")
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }

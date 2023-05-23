@@ -1,5 +1,6 @@
 package com.example.shopuin.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.GridLayoutManager
@@ -46,21 +47,21 @@ class HomeFragment :  BaseFragment() {
         hideProgressDialog()
          binding?.let {
             if (dashboardItemList.size > 0) {
-                binding!!.rvDashboardItems.visibility = View.VISIBLE
+                binding!!.rvHomeItems.visibility = View.VISIBLE
                 val layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                 layoutManager.spanSizeLookup = object:GridLayoutManager.SpanSizeLookup(){
                     override fun getSpanSize(position: Int): Int {
                         return if((position + 1) % 5 == 0) 2 else 1
                     }
                 }
-                binding!!.rvDashboardItems.layoutManager = layoutManager
+                binding!!.rvHomeItems.layoutManager = layoutManager
 
-                binding!!.rvDashboardItems.setHasFixedSize(true)
-                val allProductsAdapter = HomeListAdapter(requireActivity(), dashboardItemList)
-                binding!!.rvDashboardItems.adapter = allProductsAdapter
+                binding!!.rvHomeItems.setHasFixedSize(true)
+                val allProductsAdapter = HomeListAdapter(requireActivity(),this, dashboardItemList)
+                binding!!.rvHomeItems.adapter = allProductsAdapter
 
             } else {
-                binding!!.rvDashboardItems.visibility = View.GONE
+                binding!!.rvHomeItems.visibility = View.GONE
             }
         }
 
@@ -78,5 +79,9 @@ class HomeFragment :  BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun showDetail(intent: Intent) {
+        startActivityForResult(intent,1)
     }
 }

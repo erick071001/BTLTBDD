@@ -6,16 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopuin.R
 import com.example.shopuin.activity.ProductDetailsActivity
 import com.example.shopuin.databinding.ItemHomeBinding
+import com.example.shopuin.fragment.HomeFragment
 import com.example.shopuin.models.Products
 
 
 class HomeListAdapter(
     private val context: Context,
+    private val frm: HomeFragment,
     private var allProducts: ArrayList<Products>
 ) : RecyclerView.Adapter<HomeListAdapter.ViewHolder>() {
 
@@ -45,7 +48,7 @@ class HomeListAdapter(
                     "extra_product_owner_id",
                     products.user_id
                 )
-                context.startActivity(intent)
+                frm.showDetail(intent)
 
             }
 

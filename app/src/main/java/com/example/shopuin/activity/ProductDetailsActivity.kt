@@ -1,7 +1,9 @@
 package com.example.shopuin.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -24,10 +26,8 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         binding = ActivityProductDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupActionBar()
-
         if (intent.hasExtra("extra_product_id")) {
             mProductId = intent.getStringExtra("extra_product_id")!!
-
         }
         if (intent.hasExtra("extra_product_owner_id")) {
             mProductOwnerId = intent.getStringExtra("extra_product_owner_id")!!
@@ -39,7 +39,6 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         } else {
             binding.btnAddToCart.visibility = View.VISIBLE
         }
-
         getProductDetails()
         binding.btnAddToCart.setOnClickListener(this)
         binding.btnGoToCart.setOnClickListener(this)
@@ -62,9 +61,9 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         mProductDetails = product
         //hideProgressDialog()
         Glide.with(this)
-            .load(product.image) // URI of the image
-            .centerCrop() // Scale type of the image.
-            .placeholder(R.drawable.ic_user_placeholder) // Default placeholder if the image fails to load
+            .load(product.image)
+            .centerCrop()
+            .placeholder(R.drawable.ic_user_placeholder)
             .into( binding.ivProductDetailImage)
         binding.tvProductDetailsTitle.text = product.title
         binding.tvProductDetailsPrice.text = "${product.price}$"
@@ -145,11 +144,23 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
                 R.id.btn_add_to_cart -> {
                     addToCart()
                 }
-
                 R.id.btn_go_to_cart -> {
-//                    startActivity(Intent(this@ProductDetailsActivity, CartListActivity::class.java))
+                  onBackPressed()
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        val resultIntent = Intent()
+        if (  binding.btnGoToCart.visibility == View.VISIBLE) {
+            Log.e("onActivityResult: ","selectedFragment.toString() ")
+            resultIntent.putExtra("selected_fragment", 2)
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
+        } else {
+            super.onBackPressed()
+        }
+
     }
 }
