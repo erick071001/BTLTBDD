@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="34dp"
     android:background="@color/white"
     tools:context=".activity.LoginActivity">
 
@@ -10,10 +11,11 @@
         android:id="@+id/fl_header_image"
         android:layout_width="wrap_content"
         android:layout_height="300dp"
+        android:layout_marginTop="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/til_email">
+        app:layout_constraintBottom_toTopOf="@id/ln_login">
 
         <ImageView
             android:scaleType="centerInside"
@@ -23,71 +25,83 @@
 
     </FrameLayout>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_email"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ln_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Tài khoản Email"
-        android:textColorHint="@color/colorSecondaryText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/til_password">
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:padding="16dp"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="16sp"
-            tools:text="abc@gmail.com" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_password"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Mật khẩu"
-        android:textColorHint="@color/colorSecondaryText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/fl_header_image"
         app:layout_constraintBottom_toTopOf="@id/tv_forgot_password"
+       >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/Text16ActiveRegular400"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textColor="#44a5fb"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etEmail"
+        style="@style/Text16ActiveMedium500"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/bg_edt_stroke_active_solid_white_corner_20"
+        android:inputType="text"
+        android:lines="1"
+        android:maxLines="1"
+        android:paddingHorizontal="15dp"
+        android:singleLine="true"
+        android:textAlignment="textStart"
+        android:textColor="@color/title"
+        android:textColorHint="@color/disable"
+        android:textCursorDrawable="@drawable/cursor_color"
+       />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/Text16ActiveRegular400"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="Mật khẩu"
+        android:textColor="#44a5fb"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/etPassword"
+        style="@style/Text16ActiveMedium500"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/bg_edt_stroke_active_solid_white_corner_20"
+        android:inputType="textPassword"
+        android:lines="1"
+        android:maxLength="32"
+        android:maxLines="1"
+        android:paddingHorizontal="15dp"
+        android:singleLine="true"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/disable"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/colorPrimary">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/et_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:padding="16dp"
-            android:textColor="@color/colorPrimaryText"
-            android:textSize="16sp"
-            tools:text="123456" />
-    </com.google.android.material.textfield.TextInputLayout>
-
+        app:passwordToggleTint="@color/colorPrimary"
+        android:textCursorDrawable="@drawable/cursor_color"
+        app:layout_constraintTop_toTopOf="parent" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="34dp"
         android:foreground="?attr/selectableItemBackground"
         android:padding="5dp"
-        android:text="Quên mật khẩu"
+        android:text="Quên mật khẩu?"
         android:textColor="@color/colorSecondaryText"
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btn_login"/>
+        app:layout_constraintBottom_toTopOf="@id/btn_login"
+        app:layout_constraintTop_toBottomOf="@id/ln_login"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
@@ -97,6 +111,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/button_background"
         android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
@@ -107,41 +122,21 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/line_reg"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:id="@+id/line_reg"
-        android:layout_marginBottom="80dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_don_t_have_an_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:padding="5dp"
-            android:text="Bạn chưa có tài khoản?"
-            android:textColor="@color/colorSecondaryText"
-            android:textSize="20sp" />
+        app:layout_constraintBottom_toTopOf="@id/tv_register"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="80dp"
             android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:padding="5dp"
-            android:text="Đăng ký"
-            android:textStyle="bold"
+            android:text="Đăng ký tài khoản"
             android:textColor="@color/colorSecondaryText"
             android:textSize="20sp" />
-    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

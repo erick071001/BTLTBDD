@@ -59,7 +59,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                     logInRegisteredUser()
 
                 }
-
                 R.id.tv_register -> {
                     startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
                 }
@@ -101,17 +100,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
         if (validateLoginDetails()) {
             showProgressDialog("Loading")
-
             val email: String = binding.etEmail.text.toString().trim() { it <= ' ' }
             val password: String = binding.etPassword.text.toString().trim() { it <= ' ' }
-
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
-
                     if (task.isSuccessful) {
                         FirestoreClass().getUserDetails(this@LoginActivity)
-                        //FirebaseAuth.getInstance().signOut()
-                        //finish()
                     } else {
                         hideProgressDialog()
                         showErrorSnackBar(
@@ -126,14 +120,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     fun userLoggedInSuccess(user: User) {
         hideProgressDialog()
-        if (user.profileCompleted == 0) {
-//            val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
-//            intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
-//            startActivity(intent)
-        } else {
-            startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-        }
+        startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
+
         finish()
     }
-
 }

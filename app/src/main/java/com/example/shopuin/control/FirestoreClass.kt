@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.shopuin.activity.LoginActivity
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Products
 import com.example.shopuin.models.User
@@ -27,12 +28,11 @@ class FirestoreClass {
         return currentUserID
     }
 
-    fun getUserDetails(activity: Activity) {
+    fun getUserDetails(activity: LoginActivity) {
         mFirestore.collection("users")
             .document(getCurrentUserId())
             .get()
             .addOnSuccessListener { document ->
-                Log.i(activity.javaClass.simpleName, document.toString())
                 val user = document.toObject(User::class.java)!!
                 val sharedPreferences = activity.getSharedPreferences(
                     "MyPalPrefs",
@@ -41,10 +41,10 @@ class FirestoreClass {
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.putString(
                    "logged_in_username",
-                    "${user.firstName} ${user.lastName}"
+                    "${user.name}"
                 )
                 editor.apply()
-
+                activity.userLoggedInSuccess(user)
             }
             .addOnFailureListener { e ->
 

@@ -17,4 +17,17 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="Text16ActiveMedium500">
+        <item name="android:fontFamily">@font/roboto_medium_500</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#44a5fb</item>
+    </style>
+
+    <style name="Text16ActiveRegular400">
+        <item name="android:fontFamily">@font/roboto_regular_400</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#44a5fb</item>
+    </style>
+
 </resources>

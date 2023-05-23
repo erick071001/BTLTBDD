@@ -62,7 +62,7 @@ class RegisterActivity : BaseActivity() {
     private fun validateRegisterDetails(): Boolean {
         return when {
             TextUtils.isEmpty(
-                binding.etFirstName.text.toString()
+                binding.etName.text.toString()
                     .trim { it <= ' ' }) -> {
                 showErrorSnackBar(
                    "Nhập Họ tên",
@@ -71,7 +71,7 @@ class RegisterActivity : BaseActivity() {
                 false
             }
             TextUtils.isEmpty(
-                binding.etLastName.text.toString()
+                binding.etAddress.text.toString()
                     .trim { it <= ' ' }) -> {
                 showErrorSnackBar(
                    "Nhập địa chỉ",
@@ -131,19 +131,18 @@ class RegisterActivity : BaseActivity() {
 
     private fun registerUser() {
         if (validateRegisterDetails()) {
+            showProgressDialog("loadind")
             val email: String = binding.etEmail.text.toString().trim() { it <= ' ' }
             val password: String = binding.etPassword.text.toString().trim() { it <= ' ' }
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val firebaseUser: FirebaseUser = task.result!!.user!!
-
                         val user = User(
                             firebaseUser.uid,
-                            binding.etFirstName.text.toString().trim() { it <= ' ' },
-                            binding.etLastName.text.toString().trim() { it <= ' ' },
+                            binding.etName.text.toString().trim() { it <= ' ' },
+                            binding.etAddress.text.toString().trim() { it <= ' ' },
                             binding.etEmail.text.toString().trim() { it <= ' ' }
-
                         )
                         FirestoreClass().registerUser(this@RegisterActivity, user)
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
@@ -156,9 +155,6 @@ class RegisterActivity : BaseActivity() {
                             task.exception!!.message.toString(),
                             true
                         )
-                        Log.e("errror", email )
-                        Log.e("errror", password )
-                        Log.e("errror", task.exception!!.message.toString(), )
                     }
                 }
         }
