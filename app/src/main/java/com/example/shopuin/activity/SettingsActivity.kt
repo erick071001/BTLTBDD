@@ -49,6 +49,14 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         v?.let {
             when (v.id) {
+
+                R.id.tv_edit -> {
+                    val intent = Intent(this@SettingsActivity, UserProfileActivity::class.java)
+                    intent.putExtra("extra_user_details", mUser)
+                    startActivity(intent)
+
+                }
+
                 R.id.btn_logout -> {
                     FirebaseAuth.getInstance().signOut()
                     val intent = Intent(this@SettingsActivity, LoginActivity::class.java)

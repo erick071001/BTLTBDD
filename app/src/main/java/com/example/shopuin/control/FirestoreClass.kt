@@ -3,19 +3,19 @@ package com.example.shopuin.control
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.Uri
 import android.util.Log
-import com.example.shopuin.activity.LoginActivity
+import com.example.shopuin.activity.*
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Products
 import com.example.shopuin.models.User
-import com.example.shopuin.activity.ProductDetailsActivity
-import com.example.shopuin.activity.RegisterActivity
-import com.example.shopuin.activity.SettingsActivity
 import com.example.shopuin.fragment.HomeFragment
 import com.example.shopuin.fragment.MyCartFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class FirestoreClass {
     private val mFirestore = FirebaseFirestore.getInstance()
@@ -41,12 +41,12 @@ class FirestoreClass {
                 )
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.putString(
-                   "logged_in_username",
+                    "logged_in_username",
                     "${user.name}"
                 )
                 editor.apply()
                 when (activity) {
-                    is LoginActivity ->activity.userLoggedInSuccess(user)
+                    is LoginActivity -> activity.userLoggedInSuccess(user)
                     is SettingsActivity -> activity.userDetailsSuccess(user)
                 }
 
@@ -75,7 +75,7 @@ class FirestoreClass {
     }
 
     fun registerUser(activity: RegisterActivity, user: User) {
-          mFirestore.collection("users")
+        mFirestore.collection("users")
             .document(user.id)
             .set(user, SetOptions.merge())
             .addOnSuccessListener {
@@ -190,6 +190,46 @@ class FirestoreClass {
             .addOnFailureListener {
                 fragment.hideProgressDialog()
             }
+    }
+
+    fun uploadImageToCloudStorage(
+        activity: UserProfileActivity,
+        mSelectedImageFileUri: Uri,
+        imageType: String
+    ) {
+        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
+            "$imageType${System.currentTimeMillis()}.${
+                activity.getFileExtension(
+                    activity, mSelectedImageFileUri
+                )
+            }"
+        )
+        mSelectedImageFileUri.let {
+            sRef.putFile(it).addOnSuccessListener { taskSnapshot ->
+                taskSnapshot.metadata!!.reference!!.downloadUrl
+                    .addOnSuccessListener { uri ->
+                        activity.imageUploadSuccess(uri.toString())
+                    }
+            }
+        }
+            .addOnFailureListener { exception ->
+                activity.hideProgressDialog()
+
+            }
+    }
+
+    fun updateUserProfileData(activity: UserProfileActivity, userHashMap: HashMap<String, Any>) {
+        mFirestore.collection("users")
+            .document(getCurrentUserId())
+            .update(userHashMap)
+            .addOnSuccessListener {
+                activity.userProfileUpdateSuccess()
+            }
+            .addOnFailureListener { e ->
+                activity.hideProgressDialog()
+
+            }
+
     }
 
 

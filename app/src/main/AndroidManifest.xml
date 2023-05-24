@@ -14,7 +14,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shoppy">
-
+        <activity
+            android:name=".UserProfileActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.HomeActivity"
             android:exported="false"
@@ -23,16 +25,15 @@
         <activity
             android:name=".activity.ProductDetailsActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:noHistory="true"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
             android:name=".activity.SettingsActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Cài đặt"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
-
         <activity
             android:name=".activity.ForgotPasswordActivity"
             android:exported="false"
@@ -50,6 +51,11 @@
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Shopuin.NoActionBar" />
+        <activity
+            android:name=".activity.UserProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
