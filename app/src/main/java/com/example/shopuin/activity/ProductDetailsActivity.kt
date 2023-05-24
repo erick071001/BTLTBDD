@@ -125,12 +125,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     fun addToCartSuccess() {
         hideProgressDialog()
-        Toast.makeText(
-            this@ProductDetailsActivity,
-           "Thêm thành công vào giỏ hàng",
-            Toast.LENGTH_SHORT
-        ).show()
-
+        MyToast.show(this,"Thêm thành công vào giỏ hàng",false)
         binding.btnAddToCart.visibility = View.GONE
         binding.btnGoToCart.visibility = View.VISIBLE
 
@@ -145,22 +140,17 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
                     addToCart()
                 }
                 R.id.btn_go_to_cart -> {
+                    val resultIntent = Intent()
+                    if (  binding.btnGoToCart.visibility == View.VISIBLE) {
+                        Log.e("onActivityResult: ", "selectedFragment.toString() ")
+                        resultIntent.putExtra("selected_fragment", 2)
+                        setResult(Activity.RESULT_OK, resultIntent)
+                        finish()
+                    }
                   onBackPressed()
                 }
             }
         }
     }
 
-    override fun onBackPressed() {
-        val resultIntent = Intent()
-        if (  binding.btnGoToCart.visibility == View.VISIBLE) {
-            Log.e("onActivityResult: ","selectedFragment.toString() ")
-            resultIntent.putExtra("selected_fragment", 2)
-            setResult(Activity.RESULT_OK, resultIntent)
-            finish()
-        } else {
-            super.onBackPressed()
-        }
-
-    }
 }

@@ -1,14 +1,21 @@
 package com.example.shopuin.activity
 
 
+
+import android.annotation.SuppressLint
 import android.app.Dialog
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Handler
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.shopuin.R
 import com.google.android.material.snackbar.Snackbar
+
 
 open class BaseActivity : AppCompatActivity() {
     private var doubleBackToExitPressedOnce = false
@@ -60,14 +67,26 @@ open class BaseActivity : AppCompatActivity() {
         }
 
         this.doubleBackToExitPressedOnce = true
-        Toast.makeText(
-            this,
-            "Nhấn back để thoát",
-            Toast.LENGTH_SHORT
-        ).show()
+        MyToast.show(this,"Nhấn back để thoát",false)
         @Suppress("DEPRECATION")
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 
 
+}
+
+object MyToast {
+    @SuppressLint("MissingInflatedId")
+    fun show(context: Context?, text: String?, isLong: Boolean) {
+        val inflater = LayoutInflater.from(context)
+        val layout: View = inflater.inflate(com.example.shopuin.R.layout.dialog_toast, null)
+        val textV = layout.findViewById(com.example.shopuin.R.id.tv_text) as TextView
+        textV.text = text
+        textV.gravity = Gravity.CENTER
+        val toast = Toast(context)
+        toast.setGravity(Gravity.BOTTOM, 0, 0)
+        toast.duration = if (isLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+        toast.setView(layout)
+        toast.show()
+    }
 }

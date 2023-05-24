@@ -10,6 +10,7 @@ import com.example.shopuin.models.Products
 import com.example.shopuin.models.User
 import com.example.shopuin.activity.ProductDetailsActivity
 import com.example.shopuin.activity.RegisterActivity
+import com.example.shopuin.activity.SettingsActivity
 import com.example.shopuin.fragment.HomeFragment
 import com.example.shopuin.fragment.MyCartFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +29,7 @@ class FirestoreClass {
         return currentUserID
     }
 
-    fun getUserDetails(activity: LoginActivity) {
+    fun getUserDetails(activity: Activity) {
         mFirestore.collection("users")
             .document(getCurrentUserId())
             .get()
@@ -44,7 +45,11 @@ class FirestoreClass {
                     "${user.name}"
                 )
                 editor.apply()
-                activity.userLoggedInSuccess(user)
+                when (activity) {
+                    is LoginActivity ->activity.userLoggedInSuccess(user)
+                    is SettingsActivity -> activity.userDetailsSuccess(user)
+                }
+
             }
             .addOnFailureListener { e ->
 

@@ -161,10 +161,7 @@ class RegisterActivity : BaseActivity() {
     }
 
     fun userRegistrationSuccess(){
-        Toast.makeText(
-            this@RegisterActivity,
-            "Đăng ký tài khoản thành công", Toast.LENGTH_SHORT
-        ).show()
+        MyToast.show(this,"Đăng ký tài khoản thành công",false)
 
     }
 

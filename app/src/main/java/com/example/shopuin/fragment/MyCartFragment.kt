@@ -5,6 +5,7 @@ import android.view.*
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopuin.R
+import com.example.shopuin.activity.MyToast
 import com.example.shopuin.adapter.CartListAdapter
 import com.example.shopuin.control.FirestoreClass
 import com.example.shopuin.databinding.FragmentMycartBinding
@@ -40,11 +41,7 @@ class MyCartFragment : BaseFragment() {
 
     fun itemRemovedSuccess() {
         hideProgressDialog()
-        Toast.makeText(
-            context,
-            "Xoá sản phẩm thành công",
-            Toast.LENGTH_SHORT
-        ).show()
+        MyToast.show(context,"Xoá sản phẩm thành công",false)
         getCartItemsList()
 
     }

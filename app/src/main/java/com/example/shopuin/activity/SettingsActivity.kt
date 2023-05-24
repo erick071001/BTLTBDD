@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.bumptech.glide.Glide
 import com.example.shopuin.R
+import com.example.shopuin.control.FirestoreClass
 import com.example.shopuin.databinding.ActivitySettingsBinding
 import com.example.shopuin.models.User
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +26,11 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
         binding.btnLogout.setOnClickListener(this)
     }
 
+    override fun onStart() {
+        super.onStart()
+        getUserDetails()
+    }
+
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarSettingsActivity)
         val actionbar = supportActionBar
@@ -32,6 +39,11 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
             actionbar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24dp)
         }
         binding.toolbarSettingsActivity.setNavigationOnClickListener { onBackPressed() }
+    }
+
+    private fun getUserDetails() {
+        showProgressDialog("Loading")
+        FirestoreClass().getUserDetails(this)
     }
 
     override fun onClick(v: View?) {
@@ -46,5 +58,20 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
                 }
             }
         }
+    }
+
+    fun userDetailsSuccess(user: User) {
+        mUser = user
+        hideProgressDialog()
+        Glide.with(this)
+            .load(mUser.image)
+            .centerCrop()
+            .placeholder(R.drawable.ic_user_placeholder)
+            .into(binding.ivUserPhoto)
+        binding.tvName.text = "${user.name}"
+        binding.tvAddress.text = "${user.address}"
+        binding.tvGender.text = user.gender
+        binding.tvEmail.text = user.email
+        binding.tvMobileNumber.text = "0${user.mobile}"
     }
 }

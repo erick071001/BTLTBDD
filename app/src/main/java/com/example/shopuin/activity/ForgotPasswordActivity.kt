@@ -39,11 +39,7 @@ class ForgotPasswordActivity : BaseActivity() {
                     .addOnCompleteListener { task ->
                         hideProgressDialog()
                         if (task.isSuccessful) {
-                            Toast.makeText(
-                                this@ForgotPasswordActivity,
-                                "Vui lòng kiểm tra Email của bạn để khôi phục mật khẩu",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            MyToast.show(this,"Vui lòng kiểm tra Email của bạn để khôi phục mật khẩu",true)
                             finish()
                         } else {
                             showErrorSnackBar(task.exception!!.message.toString(), true)
