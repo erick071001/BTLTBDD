@@ -14,12 +14,9 @@ import com.example.shopuin.models.Products
 class MyCartFragment : BaseFragment() {
 
 
-    private var _binding: FragmentMycartBinding? = null
+    private lateinit var binding: FragmentMycartBinding
     private lateinit var mProductsList: ArrayList<Products>
     private lateinit var mCartListItems: ArrayList<CartItem>
-    private val binding get() = _binding!!
-
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +29,7 @@ class MyCartFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentMycartBinding.inflate(inflater, container, false)
+        binding = FragmentMycartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -85,9 +82,9 @@ class MyCartFragment : BaseFragment() {
         mCartListItems = cartList
         val fragment = this
         if (mCartListItems.size > 0) {
-            binding.rvCartItemsList.visibility = View.VISIBLE
-            binding.llCheckout.visibility = View.VISIBLE
-            with(binding.rvCartItemsList) {
+            this.binding.rvCartItemsList.visibility = View.VISIBLE
+            this.binding.llCheckout.visibility = View.VISIBLE
+            with(this.binding.rvCartItemsList) {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 val cartListAdapter = CartListAdapter(
@@ -111,23 +108,25 @@ class MyCartFragment : BaseFragment() {
 
             }
 
-            binding.tvSubTotal.text = "$$subTotal"
-            binding.tvShippingCharge.text = "$$shippingCharge"
+            this.binding.tvSubTotal.text = "$$subTotal"
+            this.binding.tvShippingCharge.text = "$$shippingCharge"
 
             if (subTotal > 0) {
-                binding.llCheckout.visibility = View.VISIBLE
+                this.binding.llCheckout.visibility = View.VISIBLE
                 val total = subTotal + shippingCharge
 
-                binding.tvTotalAmount.text = "$$total"
+                this.binding.tvTotalAmount.text = "$$total"
             } else {
 
-                binding.llCheckout.visibility = View.GONE
+                this.binding.llCheckout.visibility = View.GONE
 
 
             }
 
         } else {
-
+            binding.rvCartItemsList.visibility = View.GONE
+            binding.tvNoCartItemFound.visibility = View.VISIBLE
+            binding.llCheckout.visibility = View.GONE
         }
 
 
@@ -146,6 +145,5 @@ class MyCartFragment : BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }

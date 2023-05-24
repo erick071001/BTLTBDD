@@ -13,8 +13,8 @@ import com.example.shopuin.models.Products
 
 class HomeFragment :  BaseFragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding
+    private lateinit var binding: FragmentHomeBinding
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +32,8 @@ class HomeFragment :  BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding?.root
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 
@@ -45,23 +45,23 @@ class HomeFragment :  BaseFragment() {
 
     fun successDashboardItemsList(dashboardItemList: ArrayList<Products>) {
         hideProgressDialog()
-         binding?.let {
+        this.binding.let {
             if (dashboardItemList.size > 0) {
-                binding!!.rvHomeItems.visibility = View.VISIBLE
+                this.binding!!.rvHomeItems.visibility = View.VISIBLE
                 val layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                 layoutManager.spanSizeLookup = object:GridLayoutManager.SpanSizeLookup(){
                     override fun getSpanSize(position: Int): Int {
                         return if((position + 1) % 5 == 0) 2 else 1
                     }
                 }
-                binding!!.rvHomeItems.layoutManager = layoutManager
+                this.binding!!.rvHomeItems.layoutManager = layoutManager
 
-                binding!!.rvHomeItems.setHasFixedSize(true)
+                this.binding!!.rvHomeItems.setHasFixedSize(true)
                 val allProductsAdapter = HomeListAdapter(requireActivity(),this, dashboardItemList)
-                binding!!.rvHomeItems.adapter = allProductsAdapter
+                this.binding!!.rvHomeItems.adapter = allProductsAdapter
 
             } else {
-                binding!!.rvHomeItems.visibility = View.GONE
+                this.binding!!.rvHomeItems.visibility = View.GONE
             }
         }
 
@@ -78,7 +78,6 @@ class HomeFragment :  BaseFragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 
     fun showDetail(intent: Intent) {

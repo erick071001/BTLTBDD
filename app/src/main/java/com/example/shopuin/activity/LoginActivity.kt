@@ -87,7 +87,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 )
                 false
             }
-
             else -> {
                 true
             }
