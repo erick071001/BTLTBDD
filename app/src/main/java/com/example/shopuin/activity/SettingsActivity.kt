@@ -1,7 +1,6 @@
 package com.example.shopuin.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.bumptech.glide.Glide
@@ -43,7 +42,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
 
     private fun getUserDetails() {
         showProgressDialog("Loading")
-        FirestoreClass().getUserDetails(this)
+        FirestoreClass().getUser(this)
     }
 
     override fun onClick(v: View?) {

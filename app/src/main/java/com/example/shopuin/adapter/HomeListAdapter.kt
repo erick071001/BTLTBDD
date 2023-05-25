@@ -44,10 +44,6 @@ class HomeListAdapter(
             itemView.setOnClickListener {
                 val intent = Intent(context, ProductDetailsActivity::class.java)
                 intent.putExtra("extra_product_id", products.product_id)
-                intent.putExtra(
-                    "extra_product_owner_id",
-                    products.user_id
-                )
                 frm.showDetail(intent)
 
             }

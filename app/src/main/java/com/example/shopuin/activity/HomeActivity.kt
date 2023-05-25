@@ -69,7 +69,6 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-
         doubleBackToExit()
     }
 

@@ -36,10 +36,10 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         style="@style/Text16ActiveRegular400"
+        android:textColor="#44a5fb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Email"
-        android:textColor="#44a5fb"
         tools:ignore="MissingConstraints" />
 
     <com.google.android.material.textfield.TextInputEditText

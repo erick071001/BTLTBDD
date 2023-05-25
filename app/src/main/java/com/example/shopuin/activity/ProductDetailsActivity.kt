@@ -18,7 +18,6 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     lateinit var binding: ActivityProductDetailsBinding
     private var mProductId: String = ""
     private lateinit var mProductDetails: Products
-    private var mProductOwnerId: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,16 +28,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         if (intent.hasExtra("extra_product_id")) {
             mProductId = intent.getStringExtra("extra_product_id")!!
         }
-        if (intent.hasExtra("extra_product_owner_id")) {
-            mProductOwnerId = intent.getStringExtra("extra_product_owner_id")!!
-        }
-        if (FirestoreClass().getCurrentUserId() == mProductOwnerId
-        ) {
-            binding.btnAddToCart.visibility = View.GONE
-            binding.btnGoToCart.visibility = View.GONE
-        } else {
-            binding.btnAddToCart.visibility = View.VISIBLE
-        }
+        binding.btnAddToCart.visibility = View.VISIBLE
         getProductDetails()
         binding.btnAddToCart.setOnClickListener(this)
         binding.btnGoToCart.setOnClickListener(this)
@@ -84,11 +74,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
             binding.tvProductDetailsAvailableQuantity.text = "Không còn sản phẩm"
 
         } else {
-            if (FirestoreClass().getCurrentUserId() == product.user_id) {
-                hideProgressDialog()
-            } else {
                 FirestoreClass().checkIfItemInCart(this, mProductId)
-            }
         }
 
 
@@ -110,7 +96,6 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     private fun addToCart() {
         val cartItem = CartItem(
             FirestoreClass().getCurrentUserId(),
-            mProductOwnerId,
             mProductId,
             mProductDetails.title,
             mProductDetails.price,

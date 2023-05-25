@@ -11,6 +11,7 @@ import com.example.shopuin.models.Products
 import com.example.shopuin.models.User
 import com.example.shopuin.fragment.HomeFragment
 import com.example.shopuin.fragment.MyCartFragment
+import com.example.shopuin.models.Order
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -29,7 +30,20 @@ class FirestoreClass {
         return currentUserID
     }
 
-    fun getUserDetails(activity: Activity) {
+    fun getUser(fragment: MyCartFragment) {
+        mFirestore.collection("users")
+            .document(getCurrentUserId())
+            .get()
+            .addOnSuccessListener { document ->
+                val user = document.toObject(User::class.java)!!
+                fragment.returnUser(user)
+            }
+            .addOnFailureListener { e ->
+
+            }
+    }
+
+    fun getUser(activity: Activity) {
         mFirestore.collection("users")
             .document(getCurrentUserId())
             .get()
@@ -167,6 +181,19 @@ class FirestoreClass {
             }
     }
 
+    fun removedItemFromCart(fragment: MyCartFragment, mCartListItems: ArrayList<CartItem>) {
+        for (item in mCartListItems) {
+            mFirestore.collection("cart_items")
+                .document(item.id)
+                .delete()
+                .addOnSuccessListener {
+                }
+                .addOnFailureListener {
+                }
+        }
+
+    }
+
     fun removedItemFromCart(fragment: MyCartFragment, id: String) {
         mFirestore.collection("cart_items")
             .document(id)
@@ -230,6 +257,17 @@ class FirestoreClass {
 
             }
 
+    }
+
+
+    fun createOrder(order: Order) {
+        mFirestore.collection("order")
+            .document()
+            .set(order, SetOptions.merge())
+            .addOnSuccessListener {
+            }
+            .addOnFailureListener {
+            }
     }
 
 

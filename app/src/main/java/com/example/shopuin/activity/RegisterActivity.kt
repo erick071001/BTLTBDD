@@ -131,7 +131,7 @@ class RegisterActivity : BaseActivity() {
 
     private fun registerUser() {
         if (validateRegisterDetails()) {
-            showProgressDialog("loadind")
+            showProgressDialog("loading")
             val email: String = binding.etEmail.text.toString().trim() { it <= ' ' }
             val password: String = binding.etPassword.text.toString().trim() { it <= ' ' }
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
