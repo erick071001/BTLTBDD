@@ -57,7 +57,6 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
-
             R.id.iv_user_photo -> {
                 if (ContextCompat.checkSelfPermission(
                         this,
@@ -92,7 +91,6 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     private fun updateUserProfileUserDetails() {
         val userHashMap = HashMap<String, Any>()
-
         val firstName = binding.etName.text.toString().trim { it <= ' ' }
         if (firstName != mUser.name) {
             userHashMap["name"] = firstName
@@ -100,10 +98,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         val address = binding.etAddress.text.toString().trim { it <= ' ' }
         if (address != mUser.address) {
             userHashMap["address"] = address
-
         }
-
-
         val mobileNumber = binding.etMobileNumber.text.toString().trim { it <= ' ' }
 
         val gender = if (binding.rbMale.isChecked) {
@@ -111,7 +106,6 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         } else {
             "Nữ"
         }
-
         if (mUserProfileImageUrl.isNotEmpty()) {
             userHashMap["image"] = mUserProfileImageUrl
         }

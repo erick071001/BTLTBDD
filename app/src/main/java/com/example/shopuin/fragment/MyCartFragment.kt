@@ -79,7 +79,6 @@ class MyCartFragment : BaseFragment() {
         showProgressDialog("Loading")
         FirestoreClass().getCartList(this)
 
-
     }
 
 
@@ -99,9 +98,6 @@ class MyCartFragment : BaseFragment() {
             for (cartItem in cartList) {
                 if (product.product_id == cartItem.product_id) {
                     cartItem.stock_quantity = product.stock_quantity
-                    if (product.stock_quantity.toInt() == 0) {
-                        cartItem.cart_quantity = product.stock_quantity
-                    }
                 }
             }
         }

@@ -23,8 +23,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         val view = binding.root
         setContentView(view)
 
-
-
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
@@ -120,7 +118,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     fun userLoggedInSuccess(user: User) {
         hideProgressDialog()
         startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
-
         finish()
     }
 }

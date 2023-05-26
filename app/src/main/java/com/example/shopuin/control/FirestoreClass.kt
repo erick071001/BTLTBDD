@@ -49,16 +49,6 @@ class FirestoreClass {
             .get()
             .addOnSuccessListener { document ->
                 val user = document.toObject(User::class.java)!!
-                val sharedPreferences = activity.getSharedPreferences(
-                    "MyPalPrefs",
-                    Context.MODE_PRIVATE
-                )
-                val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                editor.putString(
-                    "logged_in_username",
-                    "${user.name}"
-                )
-                editor.apply()
                 when (activity) {
                     is LoginActivity -> activity.userLoggedInSuccess(user)
                     is SettingsActivity -> activity.userDetailsSuccess(user)
