@@ -12,6 +12,4 @@ data class Products(
     val image:String = "",
     var product_id:String = "",
     val shipping_charge:String = ""
-
-
 ):Parcelable

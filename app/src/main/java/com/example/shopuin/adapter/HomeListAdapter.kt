@@ -45,7 +45,6 @@ class HomeListAdapter(
                 val intent = Intent(context, ProductDetailsActivity::class.java)
                 intent.putExtra("extra_product_id", products.product_id)
                 frm.showDetail(intent)
-
             }
 
             animateView(itemView)

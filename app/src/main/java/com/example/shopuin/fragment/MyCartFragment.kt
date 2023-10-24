@@ -129,8 +129,8 @@ class MyCartFragment : BaseFragment() {
                 }
 
             }
-            binding.tvSubTotal.text = "$$subTotal"
-            binding.tvShippingCharge.text = "$$shippingCharge"
+            binding.tvSubTotal.text = "$subTotal$"
+            binding.tvShippingCharge.text = "$shippingCharge$"
 
         } else {        }
 

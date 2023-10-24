@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/item_value_text_color"
                     android:textSize="14sp"
-                    tools:text="$100" />
+                    tools:text="100đ" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -184,7 +184,7 @@
                     android:textColor="@color/colorSecondaryText"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="N100" />
+                    tools:text="100đ" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
