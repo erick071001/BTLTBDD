@@ -69,7 +69,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="18sp"
-                tools:text="N100" />
+                tools:text="100đ" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,7 +92,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="18sp"
-                tools:text="N10" />
+                tools:text="10đ" />
         </LinearLayout>
 
         <LinearLayout
@@ -117,7 +117,7 @@
                 android:textStyle="bold"
                 android:textColor="@color/colorDarkGrey"
                 android:textSize="18sp"
-                tools:text="N110" />
+                tools:text="110đ" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton

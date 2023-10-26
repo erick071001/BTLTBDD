@@ -1,8 +1,12 @@
 package com.example.shopuin.activities
 
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.shopuin.R
 import com.example.shopuin.control.FirestoreClass
@@ -13,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 class SettingsActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivitySettingsBinding
-    private lateinit var mUser : User
+    private lateinit var mUser: User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,6 +27,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
         setupActionBar()
         binding.tvEdit.setOnClickListener(this)
         binding.btnLogout.setOnClickListener(this)
+        binding.callHotline.setOnClickListener(this)
     }
 
     override fun onStart() {
@@ -62,6 +67,23 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish()
+                }
+                R.id.call_hotline -> {
+                    if (ContextCompat.checkSelfPermission(
+                            this,
+                            android.Manifest.permission.CALL_PHONE
+                        ) == PackageManager.PERMISSION_GRANTED
+                    ) {
+                        val phoneNumber = "0839111372"
+                        val callIntent = Intent(Intent.ACTION_CALL, Uri.parse("tel:$phoneNumber"))
+                        startActivity(callIntent)
+                    } else {
+                        ActivityCompat.requestPermissions(
+                            this,
+                            arrayOf(android.Manifest.permission.CALL_PHONE),
+                            2
+                        )
+                    }
                 }
             }
         }

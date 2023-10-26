@@ -48,11 +48,6 @@ class HomeFragment :  BaseFragment() {
         binding.let {
             if (dashboardItemList.size > 0) {
                 val layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
-                layoutManager.spanSizeLookup = object:GridLayoutManager.SpanSizeLookup(){
-                    override fun getSpanSize(position: Int): Int {
-                        return if((position + 1) % 5 == 0) 2 else 1
-                    }
-                }
                 binding.rvHomeItems.layoutManager = layoutManager
 
                 binding.rvHomeItems.setHasFixedSize(true)
@@ -63,9 +58,6 @@ class HomeFragment :  BaseFragment() {
                 binding.rvHomeItems.visibility = View.GONE
             }
         }
-
-
-
 
     }
 

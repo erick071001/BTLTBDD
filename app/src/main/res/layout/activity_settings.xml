@@ -197,6 +197,21 @@
 
     </LinearLayout>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/call_hotline"
+        android:text="Liên hệ Hotline"
+        style="@style/Text16ActiveRegular400"
+        android:textColor="#44a5fb"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_logout"
+        app:layout_constraintEnd_toEndOf="@id/btn_logout"
+        app:layout_constraintStart_toStartOf="@id/btn_logout"
+        android:layout_marginBottom="50dp"/>
+
+
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_logout"
         android:layout_width="match_parent"
