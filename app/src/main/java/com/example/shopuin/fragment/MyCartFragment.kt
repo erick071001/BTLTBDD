@@ -1,17 +1,15 @@
 package com.example.shopuin.fragment
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopuin.R
-import com.example.shopuin.activity.MyToast
+import com.example.shopuin.activities.AddressListActivity
 import com.example.shopuin.adapter.CartListAdapter
 import com.example.shopuin.control.FirestoreClass
 import com.example.shopuin.databinding.FragmentMycartBinding
 import com.example.shopuin.models.CartItem
-import com.example.shopuin.models.Order
 import com.example.shopuin.models.Products
 import com.example.shopuin.models.User
 
@@ -58,12 +56,17 @@ class MyCartFragment : BaseFragment() {
 //            intent.putExtra(Intent.EXTRA_SUBJECT, "Chủ đề của email")
 //            intent.putExtra(Intent.EXTRA_TEXT, s)
 //            startActivity(intent)
-            FirestoreClass().createOrder(Order(mUser.name,mUser.address,mUser.mobile,mUser.email,s))
-            MyToast.show(context,"Đặt hàng thành công, kiểm tra gmail để theo dõi đơn hàng",true)
-            FirestoreClass().removedItemFromCart(this, mCartListItems)
-            binding.rvCartItemsList.visibility = View.GONE
-            binding.tvNoCartItemFound.visibility = View.VISIBLE
-            binding.llCheckout.visibility = View.GONE
+
+            val intent = Intent(context, AddressListActivity::class.java)
+            intent.putExtra("extra_select_address", true)
+            startActivity(intent)
+
+//            FirestoreClass().createOrder(Order(mUser.name,mUser.address,mUser.mobile,mUser.email,s))
+//            MyToast.show(context,"Đặt hàng thành công, kiểm tra gmail để theo dõi đơn hàng",true)
+//            FirestoreClass().removedItemFromCart(this, mCartListItems)
+//            binding.rvCartItemsList.visibility = View.GONE
+//            binding.tvNoCartItemFound.visibility = View.VISIBLE
+//            binding.llCheckout.visibility = View.GONE
 
         }
     }

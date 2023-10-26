@@ -1,4 +1,4 @@
-package com.example.shopuin.activity
+package com.example.shopuin.activities
 
 import android.content.Intent
 import android.os.Build

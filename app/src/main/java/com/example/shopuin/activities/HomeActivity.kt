@@ -1,4 +1,4 @@
-package com.example.shopuin.activity
+package com.example.shopuin.activities
 
 
 import android.app.Activity
@@ -7,14 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.shopuin.R
 import com.example.shopuin.databinding.ActivityHomeBinding
-import com.example.shopuin.fragment.MyCartFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 

@@ -1,4 +1,4 @@
-package com.example.shopuin.activity
+package com.example.shopuin.activities
 
 
 

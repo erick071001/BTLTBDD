@@ -1,16 +1,16 @@
 package com.example.shopuin.control
 
 import android.app.Activity
-import android.content.Context
-import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
-import com.example.shopuin.activity.*
+import com.example.shopuin.activities.*
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Products
 import com.example.shopuin.models.User
 import com.example.shopuin.fragment.HomeFragment
 import com.example.shopuin.fragment.MyCartFragment
+import com.example.shopuin.fragment.OrdersFragment
+import com.example.shopuin.models.Address
 import com.example.shopuin.models.Order
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -184,6 +184,96 @@ class FirestoreClass {
 
     }
 
+    fun addAddress(activity: AddEditAddressActivity, addressInfo: Address) {
+        mFirestore.collection("addresses")
+            .document()
+            .set(addressInfo, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.addUpdateAddressSuccess()
+            }
+            .addOnFailureListener {
+
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating item from the cart list",
+                    it
+                )
+
+            }
+
+    }
+
+    fun updateAddress(activity: AddEditAddressActivity, addressInfo: Address, addressId: String) {
+        mFirestore.collection("addresses")
+            .document(addressId)
+
+            .set(addressInfo, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.addUpdateAddressSuccess()
+
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while trying to get cart list from firestore",
+                    it
+                )
+            }
+    }
+
+    fun deleteAddress(activity: AddressListActivity, addressId: String) {
+        mFirestore.collection("addresses")
+            .document(addressId)
+            .delete()
+            .addOnSuccessListener {
+                activity.deleteAddressSuccess()
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while trying to get cart list from firestore",
+                    it
+                )
+            }
+
+    }
+
+    fun getAddressesList(activity: AddressListActivity) {
+        mFirestore.collection("addresses")
+            .whereEqualTo("user_id", getCurrentUserId())
+            .get()
+            .addOnSuccessListener {
+                val addressList: ArrayList<Address> = ArrayList()
+
+                for (address in it.documents) {
+                    val addressItem = address.toObject(Address::class.java)!!
+                    addressItem.id = address.id
+
+                    addressList.add(addressItem)
+
+                }
+                activity.successAddressListFromFirestore(addressList = addressList)
+
+
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while getting address list from firestore",
+                    it
+                )
+
+            }
+    }
+
     fun removedItemFromCart(fragment: MyCartFragment, id: String) {
         mFirestore.collection("cart_items")
             .document(id)
@@ -260,5 +350,49 @@ class FirestoreClass {
             }
     }
 
+    fun getMyOrdersList(fragment: OrdersFragment) {
+        mFirestore.collection("order")
+            .whereEqualTo("user_id", getCurrentUserId())
+            .get()
+            .addOnSuccessListener {
+                val ordersList: ArrayList<Order> = ArrayList()
+
+
+                for (items in it.documents) {
+                    val orderItem = items.toObject(Order::class.java)!!
+                    orderItem.id = items.id
+                    ordersList.add(orderItem)
+                }
+
+                fragment.populateOrdersListInUI(ordersList)
+
+            }
+            .addOnFailureListener {
+                fragment.hideProgressDialog()
+                Log.e(
+                    fragment.javaClass.simpleName,
+                    "Error while placing an order", it
+                )
+            }
+
+
+    }
+
+    fun deleteAllOrders(fragment: OrdersFragment, userId: String) {
+        mFirestore.collection("orders")
+            .document(userId)
+            .delete()
+            .addOnSuccessListener {
+                fragment.successDeleteAllOrders()
+            }
+            .addOnFailureListener {
+                fragment.hideProgressDialog()
+                Log.e(
+                    fragment.javaClass.simpleName,
+                    "Error while deleting all orders", it
+                )
+            }
+
+    }
 
 }

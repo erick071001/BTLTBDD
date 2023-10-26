@@ -16,49 +16,49 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shoppy">
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="false"
             android:label="HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ProductDetailsActivity"
+            android:name=".activities.ProductDetailsActivity"
             android:exported="false"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activity.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:exported="false"
             android:label="Cài đặt"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activity.ForgotPasswordActivity"
+            android:name=".activities.ForgotPasswordActivity"
             android:exported="false"
             android:label="Quên mật khẩu"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activity.BaseActivity"
+            android:name=".activities.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name=".activities.RegisterActivity"
             android:exported="false"
             android:label="Đăng ký tài khoản"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activity.UserProfileActivity"
+            android:name=".activities.UserProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar">

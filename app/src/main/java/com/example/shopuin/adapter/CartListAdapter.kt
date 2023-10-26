@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopuin.R
-import com.example.shopuin.activity.HomeActivity
 import com.example.shopuin.control.FirestoreClass
 import com.example.shopuin.databinding.ListItemCartBinding
 import com.example.shopuin.fragment.MyCartFragment
@@ -17,7 +16,7 @@ import com.example.shopuin.models.CartItem
 
 class CartListAdapter(
     private val context: Context,
-    private val fragment : MyCartFragment,
+    private val fragment: MyCartFragment?,
     private var cartListItems: ArrayList<CartItem>,
     private val updateCartItems: Boolean
 ) : RecyclerView.Adapter<CartListAdapter.ViewHolder>() {
@@ -118,17 +117,17 @@ class CartListAdapter(
             if (v != null) {
                 when (v.id) {
                     R.id.ib_delete_cart_item -> {
-                        FirestoreClass().removedItemFromCart(fragment, cartItem.id)
+                        FirestoreClass().removedItemFromCart(fragment!!, cartItem.id)
                     }
                     R.id.ib_remove_cart_item -> {
                         if (cartItem.cart_quantity == "1") {
-                            FirestoreClass().removedItemFromCart(fragment, cartItem.id)
+                            FirestoreClass().removedItemFromCart(fragment!!, cartItem.id)
                         } else {
                             val cartQuantity: Int = cartItem.cart_quantity.toInt()
                             val itemHashMap = HashMap<String, Any>()
                             itemHashMap["cart_quantity"] = (cartQuantity - 1).toString()
                             FirestoreClass()
-                                .updateMyCart(fragment, cartItem.id, itemHashMap)
+                                .updateMyCart(fragment!!, cartItem.id, itemHashMap)
                         }
                     }
                     R.id.ib_add_cart_item -> {
@@ -137,7 +136,7 @@ class CartListAdapter(
                         if (cartQuantity < cartItem.stock_quantity.toInt()) {
                             val itemHashMap = HashMap<String, Any>()
                             itemHashMap["cart_quantity"] = (cartQuantity + 1).toString()
-                            FirestoreClass().updateMyCart(fragment, cartItem.id, itemHashMap)
+                            FirestoreClass().updateMyCart(fragment!!, cartItem.id, itemHashMap)
                         }
                     }
                 }

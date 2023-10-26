@@ -1,10 +1,9 @@
-package com.example.shopuin.activity
+package com.example.shopuin.activities
 
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View

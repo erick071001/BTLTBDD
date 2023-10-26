@@ -1,10 +1,9 @@
-package com.example.shopuin.activity
+package com.example.shopuin.activities
 
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.*

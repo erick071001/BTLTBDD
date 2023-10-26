@@ -1,7 +1,6 @@
-package com.example.shopuin.activity
+package com.example.shopuin.activities
 
 import android.os.Bundle
-import android.widget.Toast
 import com.example.shopuin.R
 import com.example.shopuin.databinding.ActivityForgotPasswordBinding
 import com.google.firebase.auth.FirebaseAuth

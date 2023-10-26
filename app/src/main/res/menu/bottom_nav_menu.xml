@@ -8,8 +8,12 @@
 
     <item
         android:id="@+id/navigation_mycart"
-        android:icon="@drawable/ic_vector_cart"
+        android:icon="@drawable/ic_vector_orders"
         android:title="Giỏ hàng" />
 
+    <item
+        android:id="@+id/navigation_myoder"
+        android:icon="@drawable/ic_vector_cart"
+        android:title="Đơn hàng" />
 
 </menu>
