@@ -12,6 +12,7 @@ import com.example.shopuin.fragment.MyCartFragment
 import com.example.shopuin.fragment.OrdersFragment
 import com.example.shopuin.models.Address
 import com.example.shopuin.models.Order
+import com.example.shopuin.models.SoldProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -107,7 +108,24 @@ class FirestoreClass {
                 fragment.hideProgressDialog()
             }
     }
-
+    fun getCartList(activity: CheckoutActivity) {
+        mFirestore.collection("cart_items")
+            .whereEqualTo("user_id", getCurrentUserId())
+            .get()
+            .addOnSuccessListener {
+                Log.e(activity.javaClass.simpleName, it.documents.toString())
+                val cartList: ArrayList<CartItem> = ArrayList()
+                for (items in it.documents) {
+                    val cartItem = items.toObject(CartItem::class.java)!!
+                    cartItem.id = items.id
+                    cartList.add(cartItem)
+                }
+                activity.successCartItemsList(cartList)
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+            }
+    }
     fun getAllProductsList(fragment: MyCartFragment) {
         mFirestore.collection("products")
             .get()
@@ -125,6 +143,25 @@ class FirestoreClass {
                 fragment.hideProgressDialog()
             }
     }
+
+    fun getAllProductsList(activity: CheckoutActivity) {
+        mFirestore.collection("products")
+            .get()
+            .addOnSuccessListener {
+                val allProductsList = ArrayList<Products>()
+                for (items in it.documents) {
+                    val product = items.toObject(Products::class.java)!!
+                    product.product_id = items.id
+                    allProductsList.add(product)
+                }
+                activity.successProductsListsFromFireStore(productsList = allProductsList)
+
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+            }
+    }
+
 
     fun getProductDetails(activity: ProductDetailsActivity, productId: String) {
         mFirestore.collection("products")
@@ -378,6 +415,95 @@ class FirestoreClass {
 
     }
 
+    fun placeOrder(activity: CheckoutActivity, order: Order) {
+        mFirestore.collection("orders")
+            .document()
+            .set(order, SetOptions.merge())
+            .addOnSuccessListener {
+                activity.orderPlacedSuccess()
+            }
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+            }
+
+
+    }
+
+    fun updateAllDetails(activity: CheckoutActivity, cartList: ArrayList<CartItem>, order: Order) {
+        val writeBatch = mFirestore.batch()
+
+
+        for (cartItem in cartList) {
+            val soldProducts = SoldProduct(
+                cartItem.product_owner_id,
+                cartItem.title,
+                cartItem.price,
+                cartItem.cart_quantity,
+                cartItem.image,
+                order.title,
+                order.order_datetime,
+                order.sub_total_amount,
+                order.shipping_charge,
+                order.total_amount,
+                order.address,
+
+                )
+
+            val documentReference =
+                mFirestore.collection( "sold_products")
+                    .document(cartItem.product_id)
+
+            writeBatch.set(documentReference, soldProducts)
+        }
+
+        // Here we will update the product stock in the products collection based to cart quantity.
+        for (cartItem in cartList) {
+
+            /* //val productHashMap = HashMap<String, Any>()
+
+           *//* productHashMap[Constants.STOCK_QUANTITY] =
+                (cartItem.stock_quantity.toInt() - cartItem.cart_quantity.toInt()).toString()*/
+
+            val productHashMap = HashMap<String, Any>()
+
+
+            productHashMap["stock_quantity"] =
+                (cartItem.stock_quantity.toInt() - cartItem.cart_quantity.toInt()).toString()
+
+
+            val documentReference = mFirestore.collection("products")
+                .document(cartItem.product_id)
+            writeBatch.update(documentReference, productHashMap)
+        }
+
+        // Delete the list of cart items
+        for (cartItem in cartList) {
+            val documentReference = mFirestore.collection("cart_items")
+                .document(cartItem.id)
+            writeBatch.delete(documentReference)
+
+        }
+
+        writeBatch.commit()
+            .addOnSuccessListener {
+                activity.allDetailsUpdatedSuccess()
+            }
+
+
+            .addOnFailureListener {
+                activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating all details", it
+                )
+            }
+
+
+    }
+
+
+
+
     fun deleteAllOrders(fragment: OrdersFragment, userId: String) {
         mFirestore.collection("orders")
             .document(userId)
@@ -394,5 +520,7 @@ class FirestoreClass {
             }
 
     }
+
+
 
 }

@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Products(
+    val user_id:String = "",
     val title:String = "",
     val price:String = "",
     val description:String = "",

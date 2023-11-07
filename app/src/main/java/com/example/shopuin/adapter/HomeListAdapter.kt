@@ -32,7 +32,7 @@ class HomeListAdapter(
                 .load(products.image)
                 .centerCrop()
                 .placeholder(R.drawable.ic_user_placeholder)
-                .into( binding.ivDashboardItemImage)
+                .into(binding.ivDashboardItemImage)
 
             binding.tvDashboardItemTitle.text = products.title
             binding.tvDashboardItemPrice.text =
@@ -43,6 +43,7 @@ class HomeListAdapter(
             itemView.setOnClickListener {
                 val intent = Intent(context, ProductDetailsActivity::class.java)
                 intent.putExtra("extra_product_id", products.product_id)
+                intent.putExtra("extra_product_owner_id",products.user_id)
                 frm.showDetail(intent)
             }
 
