@@ -37,6 +37,7 @@ class HomeActivity : BaseActivity() {
             setOf(
                 R.id.navigation_home,
                 R.id.navigation_mycart,
+                R.id.navigation_myoder
             )
         )
 

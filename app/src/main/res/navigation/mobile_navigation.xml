@@ -17,7 +17,7 @@
         android:label="My Cart"
         tools:layout="@layout/fragment_mycart" />
     <fragment
-        android:id="@+id/ordersFragment"
+        android:id="@+id/navigation_myoder"
         android:name="com.example.shopuin.fragment.OrdersFragment"
         android:label="My Orders" />
 

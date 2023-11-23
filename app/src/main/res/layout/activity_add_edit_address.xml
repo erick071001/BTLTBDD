@@ -39,130 +39,97 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_full_name"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_full_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_edt_stroke_active_solid_white_corner_20"
                 android:hint="Họ và tên"
-                android:textColorHint="@color/colorSecondaryText"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="16sp" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_full_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="16dp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_phone_number"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_edt_stroke_active_solid_white_corner_20"
                 android:hint="Số điện thoại"
-                android:textColorHint="@color/colorSecondaryText"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_full_name">
+                app:layout_constraintTop_toBottomOf="@id/et_full_name"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="16sp" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_phone_number"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:padding="16dp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_address"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_edt_stroke_active_solid_white_corner_20"
                 android:hint="Địa chỉ"
-                android:textColorHint="@color/colorSecondaryText"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_phone_number">
+                app:layout_constraintTop_toBottomOf="@id/et_phone_number"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="16sp" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
-                    android:minLines="3"
-                    android:padding="16dp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_zip_code"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_zip_code"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_edt_stroke_active_solid_white_corner_20"
                 android:hint="Tỉnh / Thành phố"
-                android:textColorHint="@color/colorSecondaryText"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_address">
+                app:layout_constraintTop_toBottomOf="@id/et_address"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="16sp" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_zip_code"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:padding="16dp"
-                    android:maxLength="6"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_additional_note"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_additional_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:hint="Note"
-                android:textColorHint="@color/colorSecondaryText"
+                android:background="@drawable/bg_edt_stroke_active_solid_white_corner_20"
+                android:hint="Ghi chú"
+                android:inputType="text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_zip_code">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_additional_note"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="16dp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@id/et_zip_code"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="16sp" />
 
             <RadioGroup
                 android:id="@+id/rg_type"
@@ -174,7 +141,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_additional_note">
+                app:layout_constraintTop_toBottomOf="@id/et_additional_note">
 
                 <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/rb_home"

@@ -95,7 +95,7 @@
                     android:textColor="@color/item_value_text_color"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    tools:text="Home" />
+                    tools:text="Nhà riêng" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_checkout_full_name"
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/item_value_text_color"
                     android:textSize="16sp"
-                    tools:text="Ebenezer Gana" />
+                    tools:text="Bùi Quang Trường" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_checkout_address"
@@ -112,7 +112,7 @@
                     android:layout_marginTop="2dp"
                     android:textColor="@color/item_value_text_color"
                     android:textSize="14sp"
-                    tools:text="IBBUL" />
+                    tools:text="10 Mỗ Lao, Hà Đông" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_checkout_additional_note"
@@ -121,7 +121,7 @@
                     android:layout_marginTop="2dp"
                     android:textColor="@color/item_value_text_color"
                     android:textSize="14sp"
-                    tools:text="Additional note" />
+                    tools:text="Hà Nội" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_checkout_other_details"
@@ -130,7 +130,7 @@
                     android:layout_marginTop="2dp"
                     android:textColor="@color/item_value_text_color"
                     android:textSize="14sp"
-                    tools:text="XYZ" />
+                    tools:text="Note" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_mobile_number"
@@ -139,7 +139,7 @@
                     android:layout_marginTop="2dp"
                     android:textColor="@color/item_value_text_color"
                     android:textSize="14sp"
-                    tools:text="2343456789" />
+                    tools:text="+8443456789" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -246,7 +246,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:orientation="vertical"
-        android:padding="16dp"
+        android:padding="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">

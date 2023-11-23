@@ -376,31 +376,18 @@ class FirestoreClass {
 
     }
 
-
-    fun createOrder(order: Order) {
-        mFirestore.collection("order")
-            .document()
-            .set(order, SetOptions.merge())
-            .addOnSuccessListener {
-            }
-            .addOnFailureListener {
-            }
-    }
-
     fun getMyOrdersList(fragment: OrdersFragment) {
-        mFirestore.collection("order")
+        mFirestore.collection("orders")
             .whereEqualTo("user_id", getCurrentUserId())
             .get()
             .addOnSuccessListener {
                 val ordersList: ArrayList<Order> = ArrayList()
-
-
                 for (items in it.documents) {
                     val orderItem = items.toObject(Order::class.java)!!
                     orderItem.id = items.id
                     ordersList.add(orderItem)
                 }
-
+                Log.e("getMyOrdersList: ",ordersList.toString() )
                 fragment.populateOrdersListInUI(ordersList)
 
             }
