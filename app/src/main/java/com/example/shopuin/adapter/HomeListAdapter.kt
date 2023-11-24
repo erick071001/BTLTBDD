@@ -12,38 +12,38 @@ import com.example.shopuin.R
 import com.example.shopuin.activities.ProductDetailsActivity
 import com.example.shopuin.databinding.ItemHomeBinding
 import com.example.shopuin.fragment.HomeFragment
-import com.example.shopuin.models.Products
+import com.example.shopuin.models.Product
 
 
 class HomeListAdapter(
     private val context: Context,
     private val frm: HomeFragment,
-    private var allProducts: ArrayList<Products>
+    private var allProducts: ArrayList<Product>
 ) : RecyclerView.Adapter<HomeListAdapter.ViewHolder>() {
 
     inner class ViewHolder(val binding: ItemHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private lateinit var products: Products
+        private lateinit var product: Product
 
-        fun bind(products: Products) {
-            this.products = products
+        fun bind(product: Product) {
+            this.product = product
 
             Glide.with(context)
-                .load(products.image)
+                .load(product.image)
                 .centerCrop()
                 .placeholder(R.drawable.ic_user_placeholder)
                 .into(binding.ivDashboardItemImage)
 
-            binding.tvDashboardItemTitle.text = products.title
+            binding.tvDashboardItemTitle.text = product.title
             binding.tvDashboardItemPrice.text =
-                "${products.price}$"
+                "${product.price}đ"
             binding.tvDashboardItemDescription.text =
-                products.description
+                product.description
 
             itemView.setOnClickListener {
                 val intent = Intent(context, ProductDetailsActivity::class.java)
-                intent.putExtra("extra_product_id", products.product_id)
-                intent.putExtra("extra_product_owner_id",products.user_id)
+                intent.putExtra("extra_product_id", product.product_id)
+                intent.putExtra("extra_product_owner_id",product.user_id)
                 frm.showDetail(intent)
             }
 

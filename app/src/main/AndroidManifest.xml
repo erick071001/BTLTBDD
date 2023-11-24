@@ -25,7 +25,8 @@
             android:name=".activities.ProductDetailsActivity"
             android:exported="false"
             android:noHistory="true"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Shopuin.NoActionBar"/>
         <activity
             android:name=".activities.OrderDetailsActivity"
             android:exported="false"

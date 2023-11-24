@@ -62,7 +62,7 @@ class OrderDetailsActivity : AppCompatActivity() {
         binding.tvMyOrderDetailsAddressType.text = orderDetails.address.type
         binding.tvMyOrderDetailsFullName.text = orderDetails.address.name
         binding.tvMyOrderDetailsAddress.text =
-            "${orderDetails.address.address}, ${orderDetails.address.zipCode}"
+            "${orderDetails.address.address}, ${orderDetails.address.city}"
 
         binding.tvMyOrderDetailsAdditionalNote.text = orderDetails.address
             .additionalNote

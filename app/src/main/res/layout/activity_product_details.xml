@@ -85,33 +85,6 @@
                     tools:text="100đ" />
             </LinearLayout>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_product_details_label"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16sp"
-                android:textStyle="bold"
-                android:text="Thông tin"
-                android:textColor="@color/item_value_text_color"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_product_details_title_price" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_product_details_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16sp"
-                android:layout_marginEnd="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_product_details_label"
-                tools:text="This is product details description." />
-
             <LinearLayout
                 android:id="@+id/ll_product_details_quantity"
                 android:layout_width="match_parent"
@@ -121,7 +94,7 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_product_details_description">
+                app:layout_constraintTop_toBottomOf="@id/ll_product_details_title_price">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_product_details_quantity"
@@ -148,8 +121,32 @@
                     tools:text="5" />
             </LinearLayout>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_product_details_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16sp"
+                android:textStyle="bold"
+                android:text="Thông tin"
+                android:textColor="@color/item_value_text_color"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_product_details_quantity" />
 
-
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_product_details_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16sp"
+                android:layout_marginEnd="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_details_label"
+                tools:text="This is product details description." />
 
             <LinearLayout
                 android:id="@+id/ll_product_details_shipping_charge"
@@ -162,29 +159,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ll_product_details_quantity">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_product_details_shipping_charge_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="16dp"
-                    android:text="Phí vận chuyển"
-                    android:textColor="@color/item_value_text_color"
-                    android:textSize="16sp" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_product_details_shipping_charge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/item_grey_border_background"
-                    android:paddingStart="16dp"
-                    android:paddingTop="5dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="5dp"
-                    android:textColor="@color/colorSecondaryText"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    tools:text="100đ" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -207,7 +181,7 @@
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_product_details_shipping_charge"
+                app:layout_constraintTop_toBottomOf="@id/tv_product_details_description"
                 tools:visibility="visible" />
 
             <androidx.appcompat.widget.AppCompatButton

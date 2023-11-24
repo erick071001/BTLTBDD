@@ -92,7 +92,7 @@
                 android:textAlignment="center"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="18sp"
-                tools:text="10đ" />
+                tools:text="30000đ" />
         </LinearLayout>
 
         <LinearLayout

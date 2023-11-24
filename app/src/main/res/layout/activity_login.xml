@@ -89,6 +89,7 @@
         android:textCursorDrawable="@drawable/cursor_color"
         app:layout_constraintTop_toTopOf="parent" />
     </androidx.appcompat.widget.LinearLayoutCompat>
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_forgot_password"
         android:layout_width="wrap_content"

@@ -11,12 +11,12 @@ import com.example.shopuin.R
 import com.example.shopuin.control.FirestoreClass
 import com.example.shopuin.databinding.ActivityProductDetailsBinding
 import com.example.shopuin.models.CartItem
-import com.example.shopuin.models.Products
+import com.example.shopuin.models.Product
 
 class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     lateinit var binding: ActivityProductDetailsBinding
     private var mProductId: String = ""
-    private lateinit var mProductDetails: Products
+    private lateinit var mProductDetails: Product
     private var mProductOwnerId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +51,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
 
-    fun productDetailsSuccess(product: Products) {
+    fun productDetailsSuccess(product: Product) {
         mProductDetails = product
         //hideProgressDialog()
         Glide.with(this)
@@ -63,7 +63,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         binding.tvProductDetailsPrice.text = "${product.price}$"
         binding.tvProductDetailsDescription.text = product.description
         binding.tvProductDetailsAvailableQuantity.text = product.stock_quantity
-        binding.tvProductDetailsShippingCharge.text = "${product.shipping_charge}$"
+
 
         if (product.stock_quantity.toInt() == 0) {
             hideProgressDialog()
@@ -106,7 +106,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
             mProductDetails.price,
             mProductDetails.image,
             "1",
-            "", "", mProductDetails.shipping_charge
+            mProductDetails.stock_quantity, ""
         )
 
         showProgressDialog("Loading")

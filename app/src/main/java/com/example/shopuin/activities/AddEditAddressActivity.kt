@@ -36,7 +36,7 @@ class AddEditAddressActivity : BaseActivity() {
                 binding.etFullName.setText(mAddressDetails?.name)
                 binding.etPhoneNumber.setText(mAddressDetails?.mobileNumber)
                 binding.etAddress.setText(mAddressDetails?.address)
-                binding.etZipCode.setText(mAddressDetails?.zipCode)
+                binding.etZipCode.setText(mAddressDetails?.city)
                 binding.etAdditionalNote.setText(mAddressDetails?.additionalNote)
 
                 when (mAddressDetails?.type) {

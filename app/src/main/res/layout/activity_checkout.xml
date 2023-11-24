@@ -70,7 +70,7 @@
                 android:layout_marginBottom="10dp"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
-                android:text="Chọn địa chỉ"
+                android:text="Địa chỉ"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="14sp" />
 

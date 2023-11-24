@@ -10,7 +10,7 @@ import com.example.shopuin.adapter.CartListAdapter
 import com.example.shopuin.control.FirestoreClass
 import com.example.shopuin.databinding.FragmentMycartBinding
 import com.example.shopuin.models.CartItem
-import com.example.shopuin.models.Products
+import com.example.shopuin.models.Product
 import com.example.shopuin.models.User
 
 
@@ -18,7 +18,7 @@ class MyCartFragment : BaseFragment() {
 
 
     private lateinit var binding: FragmentMycartBinding
-    private lateinit var mProductsList: ArrayList<Products>
+    private lateinit var mProductList: ArrayList<Product>
     private lateinit var mCartListItems: ArrayList<CartItem>
     private lateinit var mUser: User
 
@@ -89,15 +89,15 @@ class MyCartFragment : BaseFragment() {
         FirestoreClass().getAllProductsList(this)
     }
 
-    fun successProductsListFromFireStore(productsList: ArrayList<Products>) {
-        mProductsList = productsList
+    fun successProductsListFromFireStore(productList: ArrayList<Product>) {
+        mProductList = productList
         getCartItemsList()
 
     }
 
     fun successCartItemsList(cartList: ArrayList<CartItem>) {
         hideProgressDialog()
-        for (product in mProductsList) {
+        for (product in mProductList) {
             for (cartItem in cartList) {
                 if (product.product_id == cartItem.product_id) {
                     cartItem.stock_quantity = product.stock_quantity
@@ -121,19 +121,18 @@ class MyCartFragment : BaseFragment() {
             }
 
             var subTotal: Double = 0.0
-            var shippingCharge = 0
+            var shippingCharge = 30000
             for (item in mCartListItems) {
                 val availableQuantity = item.stock_quantity.toInt()
                 if (availableQuantity > 0) {
                     val price = item.price.toDouble()
                     val quantity = item.cart_quantity.toInt()
-                    shippingCharge = item.product_shipping_charge.toInt()
                     subTotal += (price * quantity)
                 }
 
             }
-            binding.tvSubTotal.text = "$subTotal$"
-            binding.tvShippingCharge.text = "$shippingCharge$"
+            binding.tvSubTotal.text = "${subTotal}đ"
+            binding.tvShippingCharge.text = "${shippingCharge}đ"
 
         } else {        }
 

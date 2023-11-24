@@ -9,7 +9,7 @@ data class Address(
     val name:String = "",
     val mobileNumber:String = "",
     val address:String = "",
-    val zipCode:String = "",
+    val city:String = "",
     val additionalNote:String = "",
     val type:String = "",
     val otherDetails:String = "",

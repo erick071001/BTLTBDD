@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopuin.activities.AddEditAddressActivity
 import com.example.shopuin.activities.CheckoutActivity
-import com.example.shopuin.databinding.ListItemAddressBinding
+import com.example.shopuin.databinding.ItemAddressBinding
 import com.example.shopuin.models.Address
 
 class AddressListAdapter(
@@ -19,7 +19,7 @@ class AddressListAdapter(
 ) : RecyclerView.Adapter<AddressListAdapter.ViewHolder>() {
 
 
-    inner class ViewHolder(val binding: ListItemAddressBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: ItemAddressBinding) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var address: Address
 
         fun bind(address: Address) {
@@ -27,7 +27,7 @@ class AddressListAdapter(
             binding.tvAddressFullName.text = address.name
             binding.tvAddressType.text = address.type
             binding.tvAddressDetails.text =
-                "${address.address}, ${address.zipCode}"
+                "${address.address}, ${address.city}"
             binding.tvAddressMobileNumber.text =
                 address.mobileNumber
 
@@ -44,7 +44,7 @@ class AddressListAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val binding = ListItemAddressBinding.inflate(LayoutInflater.from(context), parent, false)
+        val binding = ItemAddressBinding.inflate(LayoutInflater.from(context), parent, false)
 
         return ViewHolder(binding)
 

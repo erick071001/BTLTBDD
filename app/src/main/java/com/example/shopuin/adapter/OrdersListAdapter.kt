@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopuin.activities.OrderDetailsActivity
-import com.example.shopuin.databinding.ListItemOderBinding
+import com.example.shopuin.databinding.ItemOderBinding
 import com.example.shopuin.fragment.OrdersFragment
 import com.example.shopuin.models.Order
 
@@ -22,7 +22,7 @@ class OrdersListAdapter(
     RecyclerView.Adapter<OrdersListAdapter.ViewHolder>() {
 
 
-    inner class ViewHolder(val binding:ListItemOderBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding:ItemOderBinding) : RecyclerView.ViewHolder(binding.root) {
         private lateinit var orders: Order
         fun bind(orders: Order) {
             this.orders = orders
@@ -52,7 +52,7 @@ class OrdersListAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ListItemOderBinding.inflate(LayoutInflater.from(context),
+        val binding = ItemOderBinding.inflate(LayoutInflater.from(context),
         parent, false)
         return ViewHolder(binding)
     }

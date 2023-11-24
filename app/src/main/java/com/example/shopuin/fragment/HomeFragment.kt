@@ -8,7 +8,7 @@ import com.example.shopuin.R
 import com.example.shopuin.adapter.HomeListAdapter
 import com.example.shopuin.control.FirestoreClass
 import com.example.shopuin.databinding.FragmentHomeBinding
-import com.example.shopuin.models.Products
+import com.example.shopuin.models.Product
 
 
 class HomeFragment :  BaseFragment() {
@@ -43,7 +43,7 @@ class HomeFragment :  BaseFragment() {
 
     }
 
-    fun successDashboardItemsList(dashboardItemList: ArrayList<Products>) {
+    fun successDashboardItemsList(dashboardItemList: ArrayList<Product>) {
         hideProgressDialog()
         binding.let {
             if (dashboardItemList.size > 0) {

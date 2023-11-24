@@ -12,18 +12,18 @@ import com.example.shopuin.databinding.ActivityCheckoutBinding
 import com.example.shopuin.models.Address
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Order
-import com.example.shopuin.models.Products
+import com.example.shopuin.models.Product
 
 class CheckoutActivity : BaseActivity() {
 
     lateinit var binding: ActivityCheckoutBinding
 
     private var mAddressDetails: Address? = null
-    private lateinit var mProductsList: ArrayList<Products>
+    private lateinit var mProductList: ArrayList<Product>
     private lateinit var mCartItemList: ArrayList<CartItem>
 
-    private var mSubTotal: Double = 0.0
-    private var mTotalAmount: Double = 0.0
+    private var mSubTotal: Int = 0
+    private var mTotalAmount: Int = 0
 
     private lateinit var mOrderDetails: Order
 
@@ -47,7 +47,7 @@ class CheckoutActivity : BaseActivity() {
             binding.tvCheckoutFullName.text = mAddressDetails?.name
 
             binding.tvCheckoutAddress.text =
-                "${mAddressDetails!!.address}, ${mAddressDetails!!.zipCode}"
+                "${mAddressDetails!!.address}, ${mAddressDetails!!.city}"
 
             binding.tvCheckoutAdditionalNote.text = mAddressDetails?.additionalNote
 
@@ -93,12 +93,11 @@ class CheckoutActivity : BaseActivity() {
                 "My order ${System.currentTimeMillis()}",
                 mCartItemList[0].image,
                 mSubTotal.toString(),
-                mCartItemList[0].product_shipping_charge,
+                "30000",
                 mTotalAmount.toString(),
                 System.currentTimeMillis(),
             )
 
-            // create an orders collection from FireStore
             FirestoreClass().placeOrder(this, order = mOrderDetails)
         }
 
@@ -107,8 +106,8 @@ class CheckoutActivity : BaseActivity() {
     }
 
 
-    fun successProductsListsFromFireStore(productsList: ArrayList<Products>) {
-        mProductsList = productsList
+    fun successProductsListsFromFireStore(productList: ArrayList<Product>) {
+        mProductList = productList
         getCartItemsList()
     }
 
@@ -120,7 +119,7 @@ class CheckoutActivity : BaseActivity() {
 
     fun successCartItemsList(cartList: ArrayList<CartItem>) {
         hideProgressDialog()
-        for (product in mProductsList) {
+        for (product in mProductList) {
             for (cartItem in cartList) {
                 if (product.product_id == cartItem.product_id) {
                     cartItem.stock_quantity = product.stock_quantity
@@ -133,28 +132,23 @@ class CheckoutActivity : BaseActivity() {
 
         binding.rvCartListItems.adapter = CartListAdapter(this, null,mCartItemList, false)
 
-
-        var shippingCharge = 0
-
         for (item in mCartItemList) {
             val availableQuantity = item.stock_quantity.toInt()
             if (availableQuantity > 0) {
-                val price = item.price.toDouble()
+                val price = item.price.toInt()
                 val quantity = item.cart_quantity.toInt()
-                shippingCharge = item.product_shipping_charge.toInt()
-
                 mSubTotal += (price * quantity)
             }
         }
 
-        binding.tvCheckoutSubTotal.text = "₦$mSubTotal"
-        binding.tvCheckoutShippingCharge.text = "₦$shippingCharge"
+        binding.tvCheckoutSubTotal.text = "${mSubTotal}đ"
+        binding.tvCheckoutShippingCharge.text = "30000đ"
 
         if (mSubTotal > 0) {
             binding.llCheckoutPlaceOrder.visibility = View.VISIBLE
 
-            mTotalAmount = mSubTotal + shippingCharge
-            binding.tvCheckoutTotalAmount.text = mTotalAmount.toString()
+            mTotalAmount = mSubTotal + 30000
+            binding.tvCheckoutTotalAmount.text = mTotalAmount.toString() + "đ"
         } else {
             binding.llCheckoutPlaceOrder.visibility = View.GONE
 

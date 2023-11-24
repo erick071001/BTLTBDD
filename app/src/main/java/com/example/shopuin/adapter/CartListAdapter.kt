@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopuin.R
 import com.example.shopuin.control.FirestoreClass
-import com.example.shopuin.databinding.ListItemCartBinding
+import com.example.shopuin.databinding.ItemCartBinding
 import com.example.shopuin.fragment.MyCartFragment
 import com.example.shopuin.models.CartItem
 
@@ -25,7 +25,7 @@ class CartListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val binding =
-            ListItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ViewHolder(binding)
 
@@ -41,7 +41,7 @@ class CartListAdapter(
         return cartListItems.size
     }
 
-    inner class ViewHolder(val binding: ListItemCartBinding) : View.OnClickListener,
+    inner class ViewHolder(val binding: ItemCartBinding) : View.OnClickListener,
 
         RecyclerView.ViewHolder(binding.root) {
         private lateinit var cartItem: CartItem
@@ -56,7 +56,7 @@ class CartListAdapter(
                 .into( binding.ivCartItemImage)
 
             binding.tvCartItemTitle.text = cartItem.title
-            binding.tvCartItemPrice.text = "${cartItem.price}$"
+            binding.tvCartItemPrice.text = "${cartItem.price}đ"
             binding.tvCartQuantity.text = cartItem.cart_quantity
 
 
