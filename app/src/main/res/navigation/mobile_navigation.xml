@@ -8,17 +8,17 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.shopuin.fragment.HomeFragment"
-        android:label="Home"
+        android:label="Trang Chính"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_mycart"
         android:name="com.example.shopuin.fragment.MyCartFragment"
-        android:label="My Cart"
+        android:label="Giỏ hàng"
         tools:layout="@layout/fragment_mycart" />
     <fragment
         android:id="@+id/navigation_myoder"
         android:name="com.example.shopuin.fragment.OrdersFragment"
-        android:label="My Orders" />
+        android:label="Đơn hàng" />
 
 </navigation>

@@ -8,7 +8,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.shopuin.R
-import com.example.shopuin.control.FirestoreClass
+import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityProductDetailsBinding
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Product

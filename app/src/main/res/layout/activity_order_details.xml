@@ -111,6 +111,28 @@
                         android:textSize="16sp"
                         tools:text="20 Oct 2020" />
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Trạng thái"
+                        android:textColor="@color/colorDarkGrey"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_order_details_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorSecondaryText"
+                        android:textSize="16sp"
+                        tools:text="Đang xử lý" />
+                </LinearLayout>
 
             </LinearLayout>
 

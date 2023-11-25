@@ -5,7 +5,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import com.example.shopuin.R
-import com.example.shopuin.control.FirestoreClass
+import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityAddEditAddressBinding
 import com.example.shopuin.models.Address
 
@@ -132,7 +132,8 @@ class AddEditAddressActivity : BaseActivity() {
                 zipCode,
                 additionalNote,
                 addressType,
-                otherDetails
+                otherDetails,
+                System.currentTimeMillis().toString()
             )
 
             // only update the address in the Firestore when it's not empty

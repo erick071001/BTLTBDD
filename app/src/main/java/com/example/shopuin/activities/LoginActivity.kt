@@ -8,7 +8,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.example.shopuin.R
-import com.example.shopuin.control.FirestoreClass
+import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityLoginBinding
 import com.example.shopuin.models.User
 import com.google.firebase.auth.FirebaseAuth

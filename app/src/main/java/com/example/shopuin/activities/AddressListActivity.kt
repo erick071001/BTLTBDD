@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopuin.R
 import com.example.shopuin.adapter.AddressListAdapter
-import com.example.shopuin.control.FirestoreClass
+import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityAddressListBinding
 import com.example.shopuin.models.Address
 import com.example.shopuin.utils.SwipeToDeleteCallback

@@ -16,7 +16,6 @@ class OrderDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityOrderDetailsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_my_order_details)
 
         binding = ActivityOrderDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -45,6 +44,7 @@ class OrderDetailsActivity : AppCompatActivity() {
 
         val orderDateTime = formatter.format(calendar.time)
         binding.tvOrderDetailsDate.text = orderDateTime
+        binding.tvOrderDetailsStatus.text = if (orderDetails.order_status == "No") "Đang xử lý" else "Đã xác nhận"
 
 
         binding.rvMyOrderItemsList.apply {
@@ -78,9 +78,9 @@ class OrderDetailsActivity : AppCompatActivity() {
         }
 
         binding.tvMyOrderDetailsMobileNumber.text = orderDetails.address.mobileNumber
-        binding.tvOrderDetailsSubTotal.text = "₦${orderDetails.sub_total_amount}"
-        binding.tvOrderDetailsShippingCharge.text = "₦${orderDetails.shipping_charge}"
-        binding.tvOrderDetailsTotalAmount.text = "₦${orderDetails.total_amount}"
+        binding.tvOrderDetailsSubTotal.text = "${orderDetails.sub_total_amount}đ"
+        binding.tvOrderDetailsShippingCharge.text = "${orderDetails.shipping_charge}đ"
+        binding.tvOrderDetailsTotalAmount.text = "${orderDetails.total_amount}đ"
 
 
     }

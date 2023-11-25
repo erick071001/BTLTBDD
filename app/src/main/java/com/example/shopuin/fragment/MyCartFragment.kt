@@ -6,8 +6,9 @@ import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopuin.R
 import com.example.shopuin.activities.AddressListActivity
+import com.example.shopuin.activities.MyToast
 import com.example.shopuin.adapter.CartListAdapter
-import com.example.shopuin.control.FirestoreClass
+import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.FragmentMycartBinding
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Product
@@ -73,7 +74,7 @@ class MyCartFragment : BaseFragment() {
 
     fun itemRemovedSuccess() {
         hideProgressDialog()
-//        MyToast.show(context,"Xoá sản phẩm thành công",false)
+        MyToast.show(context,"Xoá sản phẩm thành công",false)
         getCartItemsList()
 
     }
@@ -133,8 +134,11 @@ class MyCartFragment : BaseFragment() {
             }
             binding.tvSubTotal.text = "${subTotal}đ"
             binding.tvShippingCharge.text = "${shippingCharge}đ"
-
-        } else {        }
+        } else {
+            binding.rvCartItemsList.visibility = View.INVISIBLE
+            binding.tvNoCartItemFound.visibility = View.VISIBLE
+            binding.llCheckout.visibility = View.INVISIBLE
+        }
 
 
     }

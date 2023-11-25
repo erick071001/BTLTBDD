@@ -32,7 +32,7 @@ class OrdersListAdapter(
                 .into(binding.ivItemImage)
 
             binding.tvItemName.text = orders.title
-            binding.tvItemPrice.text = "₦${orders.total_amount}"
+            binding.tvItemPrice.text = "${orders.total_amount}đ"
             binding.ibDeleteProduct.visibility = View.VISIBLE
 
             binding.ibDeleteProduct.setOnClickListener {

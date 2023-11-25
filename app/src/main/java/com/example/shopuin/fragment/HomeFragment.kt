@@ -6,7 +6,7 @@ import android.view.*
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shopuin.R
 import com.example.shopuin.adapter.HomeListAdapter
-import com.example.shopuin.control.FirestoreClass
+import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.FragmentHomeBinding
 import com.example.shopuin.models.Product
 

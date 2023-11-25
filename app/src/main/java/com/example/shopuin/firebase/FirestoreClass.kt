@@ -1,9 +1,10 @@
-package com.example.shopuin.control
+package com.example.shopuin.firebase
 
 import android.app.Activity
 import android.net.Uri
 import android.util.Log
 import com.example.shopuin.activities.*
+import com.example.shopuin.controler.OrderControler
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Product
 import com.example.shopuin.models.User
@@ -12,7 +13,6 @@ import com.example.shopuin.fragment.MyCartFragment
 import com.example.shopuin.fragment.OrdersFragment
 import com.example.shopuin.models.Address
 import com.example.shopuin.models.Order
-import com.example.shopuin.models.SoldProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -102,7 +102,7 @@ class FirestoreClass {
                     cartItem.id = items.id
                     cartList.add(cartItem)
                 }
-                if (cartList.size>0) fragment.successCartItemsList(cartList)
+                fragment.successCartItemsList(cartList)
             }
             .addOnFailureListener {
                 fragment.hideProgressDialog()
@@ -245,20 +245,12 @@ class FirestoreClass {
     fun updateAddress(activity: AddEditAddressActivity, addressInfo: Address, addressId: String) {
         mFirestore.collection("addresses")
             .document(addressId)
-
             .set(addressInfo, SetOptions.merge())
             .addOnSuccessListener {
                 activity.addUpdateAddressSuccess()
-
             }
             .addOnFailureListener {
                 activity.hideProgressDialog()
-
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while trying to get cart list from firestore",
-                    it
-                )
             }
     }
 
@@ -271,12 +263,6 @@ class FirestoreClass {
             }
             .addOnFailureListener {
                 activity.hideProgressDialog()
-
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while trying to get cart list from firestore",
-                    it
-                )
             }
 
     }
@@ -301,13 +287,6 @@ class FirestoreClass {
             }
             .addOnFailureListener {
                 activity.hideProgressDialog()
-
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while getting address list from firestore",
-                    it
-                )
-
             }
     }
 
@@ -317,7 +296,6 @@ class FirestoreClass {
             .delete()
             .addOnSuccessListener {
                 fragment.itemRemovedSuccess()
-
             }
             .addOnFailureListener {
                 fragment.hideProgressDialog()
@@ -376,30 +354,22 @@ class FirestoreClass {
 
     }
 
-    fun getMyOrdersList(fragment: OrdersFragment) {
+    fun getMyOrdersList(orderControler: OrderControler,ordersFragment: OrdersFragment) {
+        val ordersList: ArrayList<Order> = ArrayList()
         mFirestore.collection("orders")
             .whereEqualTo("user_id", getCurrentUserId())
             .get()
             .addOnSuccessListener {
-                val ordersList: ArrayList<Order> = ArrayList()
                 for (items in it.documents) {
                     val orderItem = items.toObject(Order::class.java)!!
                     orderItem.id = items.id
                     ordersList.add(orderItem)
                 }
-                Log.e("getMyOrdersList: ",ordersList.toString() )
-                fragment.populateOrdersListInUI(ordersList)
-
+                orderControler.onOrdersReceived(ordersFragment,ordersList)
             }
             .addOnFailureListener {
-                fragment.hideProgressDialog()
-                Log.e(
-                    fragment.javaClass.simpleName,
-                    "Error while placing an order", it
-                )
+
             }
-
-
     }
 
     fun placeOrder(activity: CheckoutActivity, order: Order) {
@@ -418,29 +388,6 @@ class FirestoreClass {
 
     fun updateAllDetails(activity: CheckoutActivity, cartList: ArrayList<CartItem>, order: Order) {
         val writeBatch = mFirestore.batch()
-
-
-        for (cartItem in cartList) {
-            val soldProducts = SoldProduct(
-                cartItem.product_owner_id,
-                cartItem.title,
-                cartItem.price,
-                cartItem.cart_quantity,
-                cartItem.image,
-                order.title,
-                order.order_datetime,
-                order.sub_total_amount,
-                order.total_amount,
-                order.address,
-                )
-
-            val documentReference =
-                mFirestore.collection( "sold_products")
-                    .document(cartItem.product_id)
-
-            writeBatch.set(documentReference, soldProducts)
-        }
-
         for (cartItem in cartList) {
             val productHashMap = HashMap<String, Any>()
             productHashMap["stock_quantity"] =
@@ -460,37 +407,22 @@ class FirestoreClass {
             .addOnSuccessListener {
                 activity.allDetailsUpdatedSuccess()
             }
-
-
             .addOnFailureListener {
                 activity.hideProgressDialog()
-                Log.e(
-                    activity.javaClass.simpleName,
-                    "Error while updating all details", it
-                )
             }
 
 
     }
 
-
-
-
-    fun deleteAllOrders(fragment: OrdersFragment, userId: String) {
+    fun deleteOrders(orderControler: OrderControler, ordersFragment: OrdersFragment,userId: String) {
         mFirestore.collection("orders")
             .document(userId)
             .delete()
             .addOnSuccessListener {
-                fragment.successDeleteAllOrders()
+                    orderControler.onDeleteDone(ordersFragment)
             }
             .addOnFailureListener {
-                fragment.hideProgressDialog()
-                Log.e(
-                    fragment.javaClass.simpleName,
-                    "Error while deleting all orders", it
-                )
             }
-
     }
 
 

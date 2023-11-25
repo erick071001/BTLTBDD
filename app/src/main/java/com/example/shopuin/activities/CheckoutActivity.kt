@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopuin.R
 import com.example.shopuin.adapter.CartListAdapter
-import com.example.shopuin.control.FirestoreClass
+import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityCheckoutBinding
 import com.example.shopuin.models.Address
 import com.example.shopuin.models.CartItem
@@ -90,12 +90,14 @@ class CheckoutActivity : BaseActivity() {
                 FirestoreClass().getCurrentUserId(),
                 mCartItemList,
                 mAddressDetails!!,
-                "My order ${System.currentTimeMillis()}",
+                "Đơn hàng ${System.currentTimeMillis()}",
                 mCartItemList[0].image,
                 mSubTotal.toString(),
                 "30000",
                 mTotalAmount.toString(),
                 System.currentTimeMillis(),
+                System.currentTimeMillis().toString()
+                ,"No"
             )
 
             FirestoreClass().placeOrder(this, order = mOrderDetails)
