@@ -8,7 +8,9 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.shopuin.R
-import com.example.shopuin.firebase.FirestoreClass
+import com.example.shopuin.controler.CartControler
+import com.example.shopuin.controler.ProductControler
+import com.example.shopuin.controler.UserControler
 import com.example.shopuin.databinding.ActivityProductDetailsBinding
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Product
@@ -40,7 +42,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     private fun getProductDetails() {
         showProgressDialog("Loading")
-        FirestoreClass().getProductDetails(this, mProductId)
+        ProductControler().getProductDetails(this, mProductId)
     }
 
     fun productExistInCart() {
@@ -78,7 +80,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
             binding.tvProductDetailsAvailableQuantity.text = "Không còn sản phẩm"
 
         } else {
-                FirestoreClass().checkIfItemInCart(this, mProductId)
+                CartControler().checkIfItemInCart(this, mProductId)
         }
 
 
@@ -99,7 +101,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
 
     private fun addToCart() {
         val cartItem = CartItem(
-            FirestoreClass().getCurrentUserId(),
+            UserControler().getCurrentUserId(),
             mProductOwnerId,
             mProductId,
             mProductDetails.title,
@@ -110,7 +112,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
         )
 
         showProgressDialog("Loading")
-        FirestoreClass().addCartItems(this, cartItem)
+        CartControler().addCartItems(this, cartItem)
     }
 
     fun addToCartSuccess() {

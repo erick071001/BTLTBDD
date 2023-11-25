@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.example.shopuin.R
+import com.example.shopuin.controler.UserControler
 import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityLoginBinding
 import com.example.shopuin.models.User
@@ -101,7 +102,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        FirestoreClass().getUser(this@LoginActivity)
+                        UserControler().getUser(this@LoginActivity)
                     } else {
                         hideProgressDialog()
                         showErrorSnackBar(

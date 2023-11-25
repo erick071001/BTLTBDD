@@ -5,7 +5,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.Toast
 import com.example.shopuin.R
-import com.example.shopuin.firebase.FirestoreClass
+import com.example.shopuin.controler.UserControler
 import com.example.shopuin.databinding.ActivityAddEditAddressBinding
 import com.example.shopuin.models.Address
 
@@ -125,7 +125,7 @@ class AddEditAddressActivity : BaseActivity() {
             }
 
             val addressModel = Address(
-                FirestoreClass().getCurrentUserId(),
+                UserControler().getCurrentUserId(),
                 fullName,
                 phoneNumber,
                 address,
@@ -138,12 +138,12 @@ class AddEditAddressActivity : BaseActivity() {
 
             // only update the address in the Firestore when it's not empty
             if (mAddressDetails != null && mAddressDetails!!.id.isNotEmpty()) {
-               FirestoreClass().updateAddress(
+               UserControler().updateAddress(
                     this,
                     addressModel, mAddressDetails!!.id
                 )
             } else {
-                FirestoreClass().addAddress(this@AddEditAddressActivity, addressModel)
+                UserControler().addAddress(this@AddEditAddressActivity, addressModel)
 
             }
 

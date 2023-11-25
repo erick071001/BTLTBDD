@@ -183,32 +183,27 @@
                     android:textStyle="bold" />
             </RadioGroup>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_other_details"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_other_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:hint="Khác"
-                android:textColorHint="@color/colorSecondaryText"
+                android:background="@drawable/bg_edt_stroke_active_solid_white_corner_20"
+                android:hint="Ghi chú"
+                android:inputType="text"
                 android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/btn_submit_address"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rg_type">
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/et_other_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:padding="16dp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textSize="16sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@id/rg_type"
+                android:padding="16dp"
+                android:textColor="@color/colorPrimaryText"
+                android:textColorHint="@color/colorSecondaryText"
+                android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_submit_address"
@@ -230,7 +225,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/til_other_details" />
+                app:layout_constraintTop_toBottomOf="@+id/et_other_details" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

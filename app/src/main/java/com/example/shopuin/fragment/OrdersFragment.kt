@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shopuin.R
 import com.example.shopuin.adapter.OrdersListAdapter
 import com.example.shopuin.controler.OrderControler
-import com.example.shopuin.firebase.FirestoreClass
+
 import com.example.shopuin.databinding.FragmentOrdersBinding
 import com.example.shopuin.models.Order
 import com.example.shopuin.utils.SwipeToDeleteCallback

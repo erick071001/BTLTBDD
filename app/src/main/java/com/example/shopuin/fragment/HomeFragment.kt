@@ -6,7 +6,7 @@ import android.view.*
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shopuin.R
 import com.example.shopuin.adapter.HomeListAdapter
-import com.example.shopuin.firebase.FirestoreClass
+import com.example.shopuin.controler.ProductControler
 import com.example.shopuin.databinding.FragmentHomeBinding
 import com.example.shopuin.models.Product
 
@@ -43,15 +43,14 @@ class HomeFragment :  BaseFragment() {
 
     }
 
-    fun successDashboardItemsList(dashboardItemList: ArrayList<Product>) {
+    fun successHomeItemsList(homeItemList: ArrayList<Product>) {
         hideProgressDialog()
         binding.let {
-            if (dashboardItemList.size > 0) {
+            if (homeItemList.size > 0) {
                 val layoutManager = GridLayoutManager(activity, 2, GridLayoutManager.VERTICAL, false)
                 binding.rvHomeItems.layoutManager = layoutManager
-
                 binding.rvHomeItems.setHasFixedSize(true)
-                val allProductsAdapter = HomeListAdapter(requireActivity(),this, dashboardItemList)
+                val allProductsAdapter = HomeListAdapter(requireActivity(),this, homeItemList)
                 binding.rvHomeItems.adapter = allProductsAdapter
 
             } else {
@@ -63,7 +62,7 @@ class HomeFragment :  BaseFragment() {
 
     private fun getDashboardItemList() {
         showProgressDialog("Loading")
-        FirestoreClass().getHomeItemsList(this@HomeFragment)
+        ProductControler().getHomeItemsList(this@HomeFragment)
 
     }
 

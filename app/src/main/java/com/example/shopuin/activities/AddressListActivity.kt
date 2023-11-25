@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopuin.R
 import com.example.shopuin.adapter.AddressListAdapter
-import com.example.shopuin.firebase.FirestoreClass
+import com.example.shopuin.controler.UserControler
 import com.example.shopuin.databinding.ActivityAddressListBinding
 import com.example.shopuin.models.Address
 import com.example.shopuin.utils.SwipeToDeleteCallback
@@ -56,11 +56,6 @@ class AddressListActivity : BaseActivity() {
         }
     }
 
-    /* override fun onResume() {
-         super.onResume()
-         getAddressList()
-     }*/
-
     fun deleteAddressSuccess() {
         hideProgressDialog()
         Toast.makeText(
@@ -73,7 +68,7 @@ class AddressListActivity : BaseActivity() {
 
     private fun getAddressList() {
         showProgressDialog("Loading")
-        FirestoreClass().getAddressesList(this)
+        UserControler().getAddressesList(this)
     }
 
     fun successAddressListFromFirestore(addressList: ArrayList<Address>) {
@@ -89,37 +84,31 @@ class AddressListActivity : BaseActivity() {
                 AddressListAdapter(this@AddressListActivity, addressList, mSelectAddress)
 
 
-            if (!mSelectAddress) {
-                val editSwipeHandler = object : SwipeToEditCallback(this@AddressListActivity) {
-                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                        val adapter = binding.rvAddressList.adapter as AddressListAdapter
-                        adapter.notifyEditItem(
-                            this@AddressListActivity,
-                            viewHolder.adapterPosition
-                        )
-                    }
+            val editSwipeHandler = object : SwipeToEditCallback(this@AddressListActivity) {
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    val adapter = binding.rvAddressList.adapter as AddressListAdapter
+                    adapter.notifyEditItem(
+                        this@AddressListActivity,
+                        viewHolder.adapterPosition
+                    )
                 }
-                val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
-                editItemTouchHelper.attachToRecyclerView(binding.rvAddressList)
-
-
-                val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
-                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-
-                        showProgressDialog("Loading")
-
-                        FirestoreClass().deleteAddress(
-                            this@AddressListActivity,
-                            addressList[viewHolder.adapterPosition].id
-                        )
-
-                    }
-                }
-
-                val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
-                deleteItemTouchHelper.attachToRecyclerView(binding.rvAddressList)
-
             }
+            val editItemTouchHelper = ItemTouchHelper(editSwipeHandler)
+            editItemTouchHelper.attachToRecyclerView(binding.rvAddressList)
+
+            val deleteSwipeHandler = object : SwipeToDeleteCallback(this) {
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    showProgressDialog("Loading")
+                    UserControler().deleteAddress(
+                        this@AddressListActivity,
+                        addressList[viewHolder.adapterPosition].id
+                    )
+
+                }
+            }
+
+            val deleteItemTouchHelper = ItemTouchHelper(deleteSwipeHandler)
+            deleteItemTouchHelper.attachToRecyclerView(binding.rvAddressList)
 
 
         } else {

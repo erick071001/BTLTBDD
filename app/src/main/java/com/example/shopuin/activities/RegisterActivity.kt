@@ -8,6 +8,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.*
 import com.example.shopuin.R
+import com.example.shopuin.controler.UserControler
 import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityRegisterBinding
 
@@ -143,7 +144,7 @@ class RegisterActivity : BaseActivity() {
                             binding.etAddress.text.toString().trim() { it <= ' ' },
                             binding.etEmail.text.toString().trim() { it <= ' ' }
                         )
-                        FirestoreClass().registerUser(this@RegisterActivity, user)
+                        UserControler().registerUser(this@RegisterActivity, user)
                         val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)

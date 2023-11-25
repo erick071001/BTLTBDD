@@ -7,7 +7,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopuin.R
 import com.example.shopuin.adapter.CartListAdapter
-import com.example.shopuin.firebase.FirestoreClass
+import com.example.shopuin.controler.CartControler
+import com.example.shopuin.controler.OrderControler
+import com.example.shopuin.controler.ProductControler
+import com.example.shopuin.controler.UserControler
 import com.example.shopuin.databinding.ActivityCheckoutBinding
 import com.example.shopuin.models.Address
 import com.example.shopuin.models.CartItem
@@ -80,14 +83,14 @@ class CheckoutActivity : BaseActivity() {
     }
 
     fun orderPlacedSuccess(){
-        FirestoreClass().updateAllDetails(this@CheckoutActivity, mCartItemList, mOrderDetails)
+        CartControler().updateAllDetails(this@CheckoutActivity, mCartItemList)
     }
 
     private fun placeAnOrder() {
         showProgressDialog("Loading")
         if (mAddressDetails != null){
             mOrderDetails = Order(
-                FirestoreClass().getCurrentUserId(),
+                UserControler().getCurrentUserId(),
                 mCartItemList,
                 mAddressDetails!!,
                 "Đơn hàng ${System.currentTimeMillis()}",
@@ -100,7 +103,7 @@ class CheckoutActivity : BaseActivity() {
                 ,"No"
             )
 
-            FirestoreClass().placeOrder(this, order = mOrderDetails)
+            OrderControler().placeOrder(this, order = mOrderDetails)
         }
 
 
@@ -115,7 +118,7 @@ class CheckoutActivity : BaseActivity() {
 
 
     private fun getCartItemsList() {
-        FirestoreClass().getCartList(this@CheckoutActivity)
+        CartControler().getCartList(this@CheckoutActivity)
     }
 
 
@@ -161,7 +164,7 @@ class CheckoutActivity : BaseActivity() {
 
     private fun getProductList() {
         showProgressDialog("Loading")
-       FirestoreClass().getAllProductsList(this@CheckoutActivity)
+       ProductControler().getAllProductsList(this@CheckoutActivity)
     }
 
     private fun setupActionBar() {

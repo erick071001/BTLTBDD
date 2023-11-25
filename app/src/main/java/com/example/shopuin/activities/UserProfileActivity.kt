@@ -12,7 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.shopuin.R
-import com.example.shopuin.firebase.FirestoreClass
+import com.example.shopuin.controler.UserControler
 import com.example.shopuin.databinding.ActivityUserProfileBinding
 import com.example.shopuin.models.User
 import java.io.IOException
@@ -75,7 +75,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             R.id.btn_update -> {
                 showProgressDialog("Loading")
                 if (mSelectedImageFileUri != null) {
-                    FirestoreClass().uploadImageToCloudStorage(
+                   UserControler().uploadImageToCloudStorage(
                         this,
                         mSelectedImageFileUri!!, "user_profile_image"
                     )
@@ -118,7 +118,7 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
         }
         userHashMap["gender"] = gender
         userHashMap["profileCompleted"] = 1
-        FirestoreClass().updateUserProfileData(this, userHashMap = userHashMap)
+        UserControler().updateUserProfileData(this, userHashMap = userHashMap)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

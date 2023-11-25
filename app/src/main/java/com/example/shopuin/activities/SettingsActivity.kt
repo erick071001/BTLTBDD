@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.shopuin.R
+import com.example.shopuin.controler.UserControler
 import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivitySettingsBinding
 import com.example.shopuin.models.User
@@ -47,7 +48,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
 
     private fun getUserDetails() {
         showProgressDialog("Loading")
-        FirestoreClass().getUser(this)
+        UserControler().getUser(this)
     }
 
     override fun onClick(v: View?) {
