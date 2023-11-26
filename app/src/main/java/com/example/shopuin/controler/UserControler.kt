@@ -32,9 +32,6 @@ class UserControler {
     fun getUser(activity: BaseActivity){
         FirestoreClass().getUser(this,activity)
     }
-    fun userLoggedInSuccess(activity : LoginActivity,user : User){
-        activity.userLoggedInSuccess(user)
-    }
     fun userDetailsSuccess(activity:SettingsActivity,user:User){
         activity.userDetailsSuccess(user)
     }

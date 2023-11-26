@@ -51,7 +51,6 @@ class FirestoreClass {
             .addOnSuccessListener { document ->
                 val user = document.toObject(User::class.java)!!
                 when (activity) {
-                    is LoginActivity -> userControler.userLoggedInSuccess(activity,user)
                     is SettingsActivity -> userControler.userDetailsSuccess(activity,user)
                 }
 

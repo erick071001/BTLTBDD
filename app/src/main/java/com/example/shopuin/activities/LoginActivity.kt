@@ -8,6 +8,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.example.shopuin.R
+import com.example.shopuin.controler.LoginControler
 import com.example.shopuin.controler.UserControler
 import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityLoginBinding
@@ -33,7 +34,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             )
         }
 
-        val user = FirebaseAuth.getInstance().currentUser
+        val user = LoginControler().getCurrentUser()
         if (user != null) {
             val i = Intent(this@LoginActivity, HomeActivity::class.java)
             i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -99,6 +100,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             showProgressDialog("Loading")
             val email: String = binding.etEmail.text.toString().trim() { it <= ' ' }
             val password: String = binding.etPassword.text.toString().trim() { it <= ' ' }
+            LoginControler().signInWithEmailAndPassword(this,email, password)
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -115,7 +117,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     }
 
-    fun userLoggedInSuccess(user: User) {
+    fun userLoggedInSuccess() {
         hideProgressDialog()
         startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
         finish()
