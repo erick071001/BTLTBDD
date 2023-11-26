@@ -53,10 +53,16 @@ class CheckoutActivity : BaseActivity() {
                 "${mAddressDetails!!.address}, ${mAddressDetails!!.city}"
 
             binding.tvCheckoutAdditionalNote.text = mAddressDetails?.additionalNote
-
+            if (mAddressDetails?.additionalNote!!.isNotEmpty()) {
+                binding.tvCheckoutAdditionalNote.text = mAddressDetails?.otherDetails
+            } else {
+                binding.tvCheckoutAdditionalNote.visibility = View.GONE
+            }
 
             if (mAddressDetails?.otherDetails!!.isNotEmpty()) {
                 binding.tvCheckoutOtherDetails.text = mAddressDetails?.otherDetails
+            } else {
+                binding.tvCheckoutOtherDetails.visibility = View.GONE
             }
             binding.tvMobileNumber.text = mAddressDetails?.mobileNumber
 
