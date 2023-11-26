@@ -43,7 +43,7 @@ class AddressListActivity : BaseActivity() {
         }
 
         if (mSelectAddress) {
-            binding.tvTitle.text = "Select Address"
+            binding.tvTitle.text = "Địa chỉ giao hàng"
             binding.tvAddAddress.visibility = View.VISIBLE
         }
 
@@ -60,7 +60,7 @@ class AddressListActivity : BaseActivity() {
         hideProgressDialog()
         Toast.makeText(
             this,
-            "Address deleted successfully", Toast.LENGTH_SHORT
+            "Thêm địa chỉ thành công", Toast.LENGTH_SHORT
         ).show()
         getAddressList()
 
