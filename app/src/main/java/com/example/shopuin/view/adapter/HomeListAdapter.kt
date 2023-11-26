@@ -1,4 +1,4 @@
-package com.example.shopuin.adapter
+package com.example.shopuin.view.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -9,9 +9,9 @@ import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shopuin.R
-import com.example.shopuin.activities.ProductDetailsActivity
+import com.example.shopuin.view.activities.ProductDetailActivity
 import com.example.shopuin.databinding.ItemHomeBinding
-import com.example.shopuin.fragment.HomeFragment
+import com.example.shopuin.view.fragment.HomeFragment
 import com.example.shopuin.models.Product
 
 
@@ -41,7 +41,7 @@ class HomeListAdapter(
                 product.description
 
             itemView.setOnClickListener {
-                val intent = Intent(context, ProductDetailsActivity::class.java)
+                val intent = Intent(context, ProductDetailActivity::class.java)
                 intent.putExtra("extra_product_id", product.product_id)
                 intent.putExtra("extra_product_owner_id",product.user_id)
                 frm.showDetail(intent)

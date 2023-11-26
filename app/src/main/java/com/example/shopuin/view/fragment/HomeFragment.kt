@@ -1,11 +1,11 @@
-package com.example.shopuin.fragment
+package com.example.shopuin.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.shopuin.R
-import com.example.shopuin.adapter.HomeListAdapter
+import com.example.shopuin.view.adapter.HomeListAdapter
 import com.example.shopuin.controler.ProductControler
 import com.example.shopuin.databinding.FragmentHomeBinding
 import com.example.shopuin.models.Product

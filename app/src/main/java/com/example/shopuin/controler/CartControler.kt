@@ -1,18 +1,19 @@
 package com.example.shopuin.controler
 
-import com.example.shopuin.activities.BaseActivity
-import com.example.shopuin.activities.CheckoutActivity
-import com.example.shopuin.activities.ProductDetailsActivity
-import com.example.shopuin.firebase.FirestoreClass
-import com.example.shopuin.fragment.MyCartFragment
+import com.example.shopuin.view.activities.BaseActivity
+import com.example.shopuin.view.activities.CheckoutActivity
+import com.example.shopuin.view.activities.ProductDetailActivity
+import com.example.shopuin.controler.firebase.FirestoreClass
+import com.example.shopuin.view.fragment.MyCartFragment
 import com.example.shopuin.models.CartItem
+import com.example.shopuin.models.Product
 
 class CartControler {
 
-    fun checkIfItemInCart(activity: ProductDetailsActivity, productId: String){
+    fun checkIfItemInCart(activity: ProductDetailActivity, productId: String){
         FirestoreClass().checkIfItemInCart(this,activity, productId)
     }
-    fun productExistInCart(activity: ProductDetailsActivity){
+    fun productExistInCart(activity: ProductDetailActivity){
         activity.productExistInCart()
     }
     fun getCartList(myCartFragment: MyCartFragment){
@@ -22,11 +23,11 @@ class CartControler {
     fun getCartList(activity: CheckoutActivity){
         FirestoreClass().getCartList(this,activity)
     }
-    fun successCartItemsList(activity: CheckoutActivity,cartList: ArrayList<CartItem>){
+    fun successCartItemsList(activity: CheckoutActivity, cartList: ArrayList<CartItem>){
         activity.successCartItemsList(cartList)
     }
 
-    fun successCartItemsList(myCartFragment: MyCartFragment,cartList: ArrayList<CartItem>){
+    fun successCartItemsList(myCartFragment: MyCartFragment, cartList: ArrayList<CartItem>){
         myCartFragment.successCartItemsList(cartList)
     }
 
@@ -34,11 +35,21 @@ class CartControler {
         myCartFragment.hideProgressDialog()
     }
 
-    fun addCartItems(activity: ProductDetailsActivity, cartItem: CartItem){
-        FirestoreClass().addCartItems(this,activity, cartItem)
+    fun addCartItem(mProductOwnerId : String, mProductId : String, mProductDetails : Product, activity: ProductDetailActivity){
+        val cartItem = CartItem(
+            UserControler().getCurrentUserId(),
+            mProductOwnerId,
+            mProductId,
+            mProductDetails.title,
+            mProductDetails.price,
+            mProductDetails.image,
+            "1",
+            mProductDetails.stock_quantity, ""
+        )
+        FirestoreClass().addCartItem(this,activity, cartItem)
     }
 
-    fun addToCartSuccess(activity: ProductDetailsActivity){
+    fun addToCartSuccess(activity: ProductDetailActivity){
         activity.addToCartSuccess()
     }
     fun removedItemFromCart(fragment: MyCartFragment, id: String){
@@ -67,7 +78,31 @@ class CartControler {
     fun  updateAllDetails(activity: CheckoutActivity, cartList: ArrayList<CartItem>){
         FirestoreClass().updateAllDetails(this,activity, cartList)
     }
-    fun allDetailsUpdatedSuccess(activity:CheckoutActivity){
+    fun allDetailsUpdatedSuccess(activity: CheckoutActivity){
         activity.allDetailsUpdatedSuccess()
+    }
+    fun setStockQuatity(cartList: ArrayList<CartItem>, mProductList: ArrayList<Product>) : ArrayList<CartItem>{
+        var cartlist =cartList
+        for (product in mProductList) {
+            for (cartItem in cartlist) {
+                if (product.product_id == cartItem.product_id) {
+                    cartItem.stock_quantity = product.stock_quantity
+                }
+            }
+        }
+        return cartlist
+    }
+
+    fun subTotal(mCartListItems: ArrayList<CartItem>) : Int {
+        var subTotal = 0
+        for (item in mCartListItems) {
+            val availableQuantity = item.stock_quantity.toInt()
+            if (availableQuantity > 0) {
+                val price = item.price.toInt()
+                val quantity = item.cart_quantity.toInt()
+                subTotal += (price * quantity)
+            }
+        }
+        return  subTotal
     }
 }

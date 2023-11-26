@@ -1,4 +1,4 @@
-package com.example.shopuin.activities
+package com.example.shopuin.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopuin.R
-import com.example.shopuin.adapter.CartListAdapter
+import com.example.shopuin.view.adapter.CartListAdapter
 import com.example.shopuin.controler.CartControler
 import com.example.shopuin.controler.OrderControler
 import com.example.shopuin.controler.ProductControler
@@ -83,27 +83,14 @@ class CheckoutActivity : BaseActivity() {
     }
 
     fun orderPlacedSuccess(){
+        MyToast.show(this, "Đặt hàng thành công", false)
         CartControler().updateAllDetails(this@CheckoutActivity, mCartItemList)
     }
 
     private fun placeAnOrder() {
         showProgressDialog("Loading")
         if (mAddressDetails != null){
-            mOrderDetails = Order(
-                UserControler().getCurrentUserId(),
-                mCartItemList,
-                mAddressDetails!!,
-                "Đơn hàng ${System.currentTimeMillis()}",
-                mCartItemList[0].image,
-                mSubTotal.toString(),
-                "30000",
-                mTotalAmount.toString(),
-                System.currentTimeMillis(),
-                System.currentTimeMillis().toString()
-                ,"No"
-            )
-
-            OrderControler().placeOrder(this, order = mOrderDetails)
+           OrderControler().placeOrder(mCartItemList, mAddressDetails!!,mSubTotal,mTotalAmount,this)
         }
 
 
@@ -124,28 +111,12 @@ class CheckoutActivity : BaseActivity() {
 
     fun successCartItemsList(cartList: ArrayList<CartItem>) {
         hideProgressDialog()
-        for (product in mProductList) {
-            for (cartItem in cartList) {
-                if (product.product_id == cartItem.product_id) {
-                    cartItem.stock_quantity = product.stock_quantity
-                }
-            }
-        }
-        mCartItemList = cartList
+        mCartItemList = CartControler().setStockQuatity(cartList,mProductList)
         binding.rvCartListItems.layoutManager = LinearLayoutManager(this)
         binding.rvCartListItems.setHasFixedSize(true)
 
         binding.rvCartListItems.adapter = CartListAdapter(this, null,mCartItemList, false)
-
-        for (item in mCartItemList) {
-            val availableQuantity = item.stock_quantity.toInt()
-            if (availableQuantity > 0) {
-                val price = item.price.toInt()
-                val quantity = item.cart_quantity.toInt()
-                mSubTotal += (price * quantity)
-            }
-        }
-
+        mSubTotal = CartControler().subTotal(mCartItemList)
         binding.tvCheckoutSubTotal.text = "${mSubTotal}đ"
         binding.tvCheckoutShippingCharge.text = "30000đ"
 

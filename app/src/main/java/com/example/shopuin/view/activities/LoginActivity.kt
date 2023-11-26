@@ -1,4 +1,4 @@
-package com.example.shopuin.activities
+package com.example.shopuin.view.activities
 
 import android.content.Intent
 import android.os.Build
@@ -10,9 +10,7 @@ import android.view.WindowManager
 import com.example.shopuin.R
 import com.example.shopuin.controler.LoginControler
 import com.example.shopuin.controler.UserControler
-import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityLoginBinding
-import com.example.shopuin.models.User
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BaseActivity(), View.OnClickListener {

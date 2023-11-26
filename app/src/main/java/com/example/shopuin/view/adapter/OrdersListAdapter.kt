@@ -1,4 +1,4 @@
-package com.example.shopuin.adapter
+package com.example.shopuin.view.adapter
 
 import android.content.Context
 import android.content.Intent
@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.shopuin.activities.OrderDetailsActivity
+import com.example.shopuin.view.activities.OrderDetailsActivity
 import com.example.shopuin.databinding.ItemOderBinding
-import com.example.shopuin.fragment.OrdersFragment
+import com.example.shopuin.view.fragment.OrdersFragment
 import com.example.shopuin.models.Order
 
 

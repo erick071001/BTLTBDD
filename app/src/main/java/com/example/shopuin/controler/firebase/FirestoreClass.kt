@@ -1,9 +1,8 @@
-package com.example.shopuin.firebase
+package com.example.shopuin.controler.firebase
 
 import android.app.Activity
 import android.net.Uri
 import android.util.Log
-import com.example.shopuin.activities.*
 import com.example.shopuin.controler.CartControler
 import com.example.shopuin.controler.OrderControler
 import com.example.shopuin.controler.ProductControler
@@ -11,11 +10,12 @@ import com.example.shopuin.controler.UserControler
 import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Product
 import com.example.shopuin.models.User
-import com.example.shopuin.fragment.HomeFragment
-import com.example.shopuin.fragment.MyCartFragment
-import com.example.shopuin.fragment.OrdersFragment
+import com.example.shopuin.view.fragment.HomeFragment
+import com.example.shopuin.view.fragment.MyCartFragment
+import com.example.shopuin.view.fragment.OrdersFragment
 import com.example.shopuin.models.Address
 import com.example.shopuin.models.Order
+import com.example.shopuin.view.activities.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -75,7 +75,7 @@ class FirestoreClass {
                 productControler.failureHomeItemsList(fragment)
             }
     }
-    fun registerUser(userControler: UserControler,activity: RegisterActivity, user: User) {
+    fun registerUser(userControler: UserControler, activity: RegisterActivity, user: User) {
         mFirestore.collection("users")
             .document(user.id)
             .set(user, SetOptions.merge())
@@ -154,7 +154,7 @@ class FirestoreClass {
                 productControler.hideProgressDialog(activity)
             }
     }
-    fun getProductDetails(productControler: ProductControler,activity: ProductDetailsActivity, productId: String) {
+    fun getProductDetails(productControler: ProductControler, activity: ProductDetailActivity, productId: String) {
         mFirestore.collection("products")
             .document(productId)
             .get()
@@ -168,7 +168,7 @@ class FirestoreClass {
                 productControler.hideProgressDialog(activity)
             }
     }
-    fun checkIfItemInCart(cartControler: CartControler,activity: ProductDetailsActivity, productId: String) {
+    fun checkIfItemInCart(cartControler: CartControler, activity: ProductDetailActivity, productId: String) {
         mFirestore.collection("cart_items")
             .whereEqualTo("user_id", getCurrentUserId())
             .whereEqualTo("product_id", productId)
@@ -185,7 +185,7 @@ class FirestoreClass {
 
             }
     }
-    fun addCartItems(cartControler: CartControler,activity: ProductDetailsActivity, cartItem: CartItem) {
+    fun addCartItem(cartControler: CartControler, activity: ProductDetailActivity, cartItem: CartItem) {
         mFirestore.collection("cart_items")
             .document()
             .set(cartItem, SetOptions.merge())
@@ -196,7 +196,7 @@ class FirestoreClass {
                 cartControler.hideProgressDialog(activity)
             }
     }
-    fun addAddress(userControler: UserControler,activity: AddEditAddressActivity, addressInfo: Address) {
+    fun addAddress(userControler: UserControler, activity: AddEditAddressActivity, addressInfo: Address) {
         mFirestore.collection("addresses")
             .document()
             .set(addressInfo, SetOptions.merge())
@@ -208,7 +208,7 @@ class FirestoreClass {
             }
 
     }
-    fun updateAddress(userControler: UserControler,activity: AddEditAddressActivity, addressInfo: Address, addressId: String) {
+    fun updateAddress(userControler: UserControler, activity: AddEditAddressActivity, addressInfo: Address, addressId: String) {
         mFirestore.collection("addresses")
             .document(addressId)
             .set(addressInfo, SetOptions.merge())
@@ -219,7 +219,7 @@ class FirestoreClass {
                 userControler.hideProgressDialog(activity)
             }
     }
-    fun deleteAddress(userControler: UserControler,activity: AddressListActivity, addressId: String) {
+    fun deleteAddress(userControler: UserControler, activity: AddressListActivity, addressId: String) {
         mFirestore.collection("addresses")
             .document(addressId)
             .delete()
@@ -249,7 +249,7 @@ class FirestoreClass {
                 userControler.hideProgressDialog(activity)
             }
     }
-    fun removedItemFromCart(cartControler: CartControler,fragment: MyCartFragment, id: String) {
+    fun removedItemFromCart(cartControler: CartControler, fragment: MyCartFragment, id: String) {
         mFirestore.collection("cart_items")
             .document(id)
             .delete()
@@ -260,7 +260,7 @@ class FirestoreClass {
                 cartControler.hideProgressDialog(fragment)
             }
     }
-    fun updateMyCart(cartControler: CartControler,fragment: MyCartFragment, id: String, itemHashMap: HashMap<String, Any>) {
+    fun updateMyCart(cartControler: CartControler, fragment: MyCartFragment, id: String, itemHashMap: HashMap<String, Any>) {
         mFirestore.collection("cart_items")
             .document(id)
             .update(itemHashMap)
@@ -271,7 +271,7 @@ class FirestoreClass {
                 cartControler.hideProgressDialog(fragment)
             }
     }
-    fun uploadImageToCloudStorage(userControler: UserControler,activity: UserProfileActivity,mSelectedImageFileUri: Uri,imageType: String) {
+    fun uploadImageToCloudStorage(userControler: UserControler, activity: UserProfileActivity, mSelectedImageFileUri: Uri, imageType: String) {
         val sRef: StorageReference = FirebaseStorage.getInstance().reference.child(
             "$imageType${System.currentTimeMillis()}.${
                 userControler.getFileExtension(
@@ -291,7 +291,7 @@ class FirestoreClass {
                 userControler.hideProgressDialog(activity)
             }
     }
-    fun updateUserProfileData(userControler: UserControler,activity: UserProfileActivity, userHashMap: HashMap<String, Any>) {
+    fun updateUserProfileData(userControler: UserControler, activity: UserProfileActivity, userHashMap: HashMap<String, Any>) {
         mFirestore.collection("users")
             .document(getCurrentUserId())
             .update(userHashMap)
@@ -321,7 +321,7 @@ class FirestoreClass {
 
             }
     }
-    fun placeOrder(orderControler: OrderControler,activity: CheckoutActivity, order: Order) {
+    fun placeOrder(orderControler: OrderControler, activity: CheckoutActivity, order: Order) {
         mFirestore.collection("orders")
             .document()
             .set(order, SetOptions.merge())
@@ -334,7 +334,7 @@ class FirestoreClass {
 
 
     }
-    fun updateAllDetails(cartControler: CartControler,activity: CheckoutActivity, cartList: ArrayList<CartItem>) {
+    fun updateAllDetails(cartControler: CartControler, activity: CheckoutActivity, cartList: ArrayList<CartItem>) {
         val writeBatch = mFirestore.batch()
         for (cartItem in cartList) {
             val productHashMap = HashMap<String, Any>()
@@ -361,7 +361,7 @@ class FirestoreClass {
 
 
     }
-    fun deleteOrders(orderControler: OrderControler, ordersFragment: OrdersFragment,userId: String) {
+    fun deleteOrders(orderControler: OrderControler, ordersFragment: OrdersFragment, userId: String) {
         mFirestore.collection("orders")
             .document(userId)
             .delete()

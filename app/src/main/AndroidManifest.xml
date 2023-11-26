@@ -17,71 +17,71 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Shoppy">
         <activity
-            android:name=".activities.HomeActivity"
+            android:name=".view.activities.HomeActivity"
             android:exported="false"
             android:label="HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.ProductDetailsActivity"
+            android:name=".view.activities.ProductDetailActivity"
             android:exported="false"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar"/>
         <activity
-            android:name=".activities.OrderDetailsActivity"
+            android:name=".view.activities.OrderDetailsActivity"
             android:exported="false"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activities.CheckoutActivity"
+            android:name=".view.activities.CheckoutActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activities.AddressListActivity"
+            android:name=".view.activities.AddressListActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activities.AddEditAddressActivity"
+            android:name=".view.activities.AddEditAddressActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
 
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name=".view.activities.SettingsActivity"
             android:exported="false"
             android:label="Cài đặt"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activities.ForgotPasswordActivity"
+            android:name=".view.activities.ForgotPasswordActivity"
             android:exported="false"
             android:label="Quên mật khẩu"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activities.BaseActivity"
+            android:name=".view.activities.BaseActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name=".view.activities.RegisterActivity"
             android:exported="false"
             android:label="Đăng ký tài khoản"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".view.activities.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activities.UserProfileActivity"
+            android:name=".view.activities.UserProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".view.activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Shopuin.NoActionBar">

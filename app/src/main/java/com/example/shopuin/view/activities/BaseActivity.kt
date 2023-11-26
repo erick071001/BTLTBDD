@@ -1,4 +1,4 @@
-package com.example.shopuin.activities
+package com.example.shopuin.view.activities
 
 
 
@@ -67,7 +67,7 @@ open class BaseActivity : AppCompatActivity() {
         }
 
         this.doubleBackToExitPressedOnce = true
-        MyToast.show(this,"Nhấn back để thoát",false)
+        MyToast.show(this, "Nhấn back để thoát", false)
         @Suppress("DEPRECATION")
         Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }

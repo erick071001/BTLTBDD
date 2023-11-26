@@ -1,4 +1,4 @@
-package com.example.shopuin.activities
+package com.example.shopuin.view.activities
 
 import android.os.Bundle
 import com.example.shopuin.R
@@ -38,7 +38,11 @@ class ForgotPasswordActivity : BaseActivity() {
                     .addOnCompleteListener { task ->
                         hideProgressDialog()
                         if (task.isSuccessful) {
-                            MyToast.show(this,"Vui lòng kiểm tra Email của bạn để khôi phục mật khẩu",true)
+                            MyToast.show(
+                                this,
+                                "Vui lòng kiểm tra Email của bạn để khôi phục mật khẩu",
+                                true
+                            )
                             finish()
                         } else {
                             showErrorSnackBar(task.exception!!.message.toString(), true)

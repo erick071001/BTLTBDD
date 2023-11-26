@@ -1,4 +1,4 @@
-package com.example.shopuin.activities
+package com.example.shopuin.view.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -10,12 +10,10 @@ import com.bumptech.glide.Glide
 import com.example.shopuin.R
 import com.example.shopuin.controler.CartControler
 import com.example.shopuin.controler.ProductControler
-import com.example.shopuin.controler.UserControler
 import com.example.shopuin.databinding.ActivityProductDetailsBinding
-import com.example.shopuin.models.CartItem
 import com.example.shopuin.models.Product
 
-class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
+class ProductDetailActivity : BaseActivity(), View.OnClickListener {
     lateinit var binding: ActivityProductDetailsBinding
     private var mProductId: String = ""
     private lateinit var mProductDetails: Product
@@ -72,7 +70,7 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
             binding.btnAddToCart.visibility = View.GONE
             binding.tvProductDetailsAvailableQuantity.setTextColor(
                 ContextCompat.getColor(
-                    this@ProductDetailsActivity,
+                    this@ProductDetailActivity,
                     R.color.colorSnackBarError
                 )
 
@@ -100,24 +98,13 @@ class ProductDetailsActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun addToCart() {
-        val cartItem = CartItem(
-            UserControler().getCurrentUserId(),
-            mProductOwnerId,
-            mProductId,
-            mProductDetails.title,
-            mProductDetails.price,
-            mProductDetails.image,
-            "1",
-            mProductDetails.stock_quantity, ""
-        )
-
         showProgressDialog("Loading")
-        CartControler().addCartItems(this, cartItem)
+        CartControler().addCartItem(mProductOwnerId,mProductId,mProductDetails,this)
     }
 
     fun addToCartSuccess() {
         hideProgressDialog()
-        MyToast.show(this,"Thêm thành công vào giỏ hàng",false)
+        MyToast.show(this, "Thêm thành công vào giỏ hàng", false)
         binding.btnAddToCart.visibility = View.GONE
         binding.btnGoToCart.visibility = View.VISIBLE
 

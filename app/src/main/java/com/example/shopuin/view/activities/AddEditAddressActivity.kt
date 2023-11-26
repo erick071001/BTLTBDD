@@ -1,4 +1,4 @@
-package com.example.shopuin.activities
+package com.example.shopuin.view.activities
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -51,7 +51,7 @@ class AddEditAddressActivity : BaseActivity() {
                     else -> {
                         binding.rbOther.isChecked = true
 
-                        binding.tilOtherDetails.visibility = View.VISIBLE
+                        binding.etOtherDetails.visibility = View.VISIBLE
                         binding.etOtherDetails.setText(mAddressDetails?.otherDetails)
                     }
                 }
@@ -62,9 +62,9 @@ class AddEditAddressActivity : BaseActivity() {
 
         binding.rgType.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == R.id.rb_other) {
-                binding.tilOtherDetails.visibility = View.VISIBLE
+                binding.etOtherDetails.visibility = View.VISIBLE
             } else {
-                binding.tilOtherDetails.visibility = View.GONE
+                binding.etOtherDetails.visibility = View.GONE
             }
 
         }

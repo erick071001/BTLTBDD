@@ -1,4 +1,4 @@
-package com.example.shopuin.fragment
+package com.example.shopuin.view.fragment
 
 import android.os.Bundle
 import android.view.*
@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopuin.R
-import com.example.shopuin.adapter.OrdersListAdapter
+import com.example.shopuin.view.adapter.OrdersListAdapter
 import com.example.shopuin.controler.OrderControler
 
 import com.example.shopuin.databinding.FragmentOrdersBinding
 import com.example.shopuin.models.Order
-import com.example.shopuin.utils.SwipeToDeleteCallback
+import com.example.shopuin.view.utils.SwipeToDeleteCallback
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class OrdersFragment : BaseFragment() {

@@ -1,4 +1,4 @@
-package com.example.shopuin.fragment
+package com.example.shopuin.view.fragment
 
 import android.app.Dialog
 import androidx.fragment.app.Fragment

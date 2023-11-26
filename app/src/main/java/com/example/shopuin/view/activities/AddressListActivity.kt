@@ -1,4 +1,4 @@
-package com.example.shopuin.activities
+package com.example.shopuin.view.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shopuin.R
-import com.example.shopuin.adapter.AddressListAdapter
+import com.example.shopuin.view.adapter.AddressListAdapter
 import com.example.shopuin.controler.UserControler
 import com.example.shopuin.databinding.ActivityAddressListBinding
 import com.example.shopuin.models.Address
-import com.example.shopuin.utils.SwipeToDeleteCallback
-import com.example.shopuin.utils.SwipeToEditCallback
+import com.example.shopuin.view.utils.SwipeToDeleteCallback
+import com.example.shopuin.view.utils.SwipeToEditCallback
 
 class AddressListActivity : BaseActivity() {
     lateinit var binding: ActivityAddressListBinding

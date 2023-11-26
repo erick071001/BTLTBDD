@@ -1,16 +1,14 @@
 package com.example.shopuin.controler
 
-import android.app.Activity
 import android.net.Uri
-import com.example.shopuin.activities.AddEditAddressActivity
-import com.example.shopuin.activities.AddressListActivity
-import com.example.shopuin.activities.BaseActivity
-import com.example.shopuin.activities.LoginActivity
-import com.example.shopuin.activities.RegisterActivity
-import com.example.shopuin.activities.SettingsActivity
-import com.example.shopuin.activities.UserProfileActivity
-import com.example.shopuin.firebase.FirestoreClass
-import com.example.shopuin.fragment.MyCartFragment
+import com.example.shopuin.view.activities.AddEditAddressActivity
+import com.example.shopuin.view.activities.AddressListActivity
+import com.example.shopuin.view.activities.BaseActivity
+import com.example.shopuin.view.activities.RegisterActivity
+import com.example.shopuin.view.activities.SettingsActivity
+import com.example.shopuin.view.activities.UserProfileActivity
+import com.example.shopuin.controler.firebase.FirestoreClass
+import com.example.shopuin.view.fragment.MyCartFragment
 import com.example.shopuin.models.Address
 import com.example.shopuin.models.User
 
@@ -32,10 +30,10 @@ class UserControler {
     fun getUser(activity: BaseActivity){
         FirestoreClass().getUser(this,activity)
     }
-    fun userDetailsSuccess(activity:SettingsActivity,user:User){
+    fun userDetailsSuccess(activity: SettingsActivity, user:User){
         activity.userDetailsSuccess(user)
     }
-    fun returnUser(myCartFragment: MyCartFragment,user: User) {
+    fun returnUser(myCartFragment: MyCartFragment, user: User) {
         myCartFragment.returnUser(user)
     }
 
@@ -58,11 +56,11 @@ class UserControler {
         )
     }
 
-    fun getFileExtension(activity:UserProfileActivity, uri: Uri?): String?{
+    fun getFileExtension(activity: UserProfileActivity, uri: Uri?): String?{
         return activity.getFileExtension(activity,uri)
     }
 
-    fun imageUploadSuccess(activity: UserProfileActivity,imageURL: String){
+    fun imageUploadSuccess(activity: UserProfileActivity, imageURL: String){
         activity.imageUploadSuccess(imageURL)
     }
 
@@ -70,7 +68,7 @@ class UserControler {
         FirestoreClass().getAddressesList(this,activity)
     }
 
-    fun  successAddressListFromFirestore(activity: AddressListActivity,addressList: ArrayList<Address>){
+    fun  successAddressListFromFirestore(activity: AddressListActivity, addressList: ArrayList<Address>){
         activity.successAddressListFromFirestore(addressList)
     }
 
@@ -97,7 +95,7 @@ class UserControler {
     fun deleteAddressSuccess(activity: AddressListActivity){
         activity.deleteAddressSuccess()
     }
-    fun hideProgressDialog(activity:BaseActivity){
+    fun hideProgressDialog(activity: BaseActivity){
         activity.hideProgressDialog()
     }
 }

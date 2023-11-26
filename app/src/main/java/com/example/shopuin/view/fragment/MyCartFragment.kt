@@ -1,13 +1,13 @@
-package com.example.shopuin.fragment
+package com.example.shopuin.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.shopuin.R
-import com.example.shopuin.activities.AddressListActivity
-import com.example.shopuin.activities.MyToast
-import com.example.shopuin.adapter.CartListAdapter
+import com.example.shopuin.view.activities.AddressListActivity
+import com.example.shopuin.view.activities.MyToast
+import com.example.shopuin.view.adapter.CartListAdapter
 import com.example.shopuin.controler.CartControler
 import com.example.shopuin.controler.ProductControler
 import com.example.shopuin.controler.UserControler
@@ -81,14 +81,7 @@ class MyCartFragment : BaseFragment() {
 
     fun successCartItemsList(cartList: ArrayList<CartItem>) {
         hideProgressDialog()
-        for (product in mProductList) {
-            for (cartItem in cartList) {
-                if (product.product_id == cartItem.product_id) {
-                    cartItem.stock_quantity = product.stock_quantity
-                }
-            }
-        }
-        mCartListItems = cartList
+        mCartListItems = CartControler().setStockQuatity(cartList,mProductList)
         val fragment = this
         if (mCartListItems.size > 0) {
             binding.rvCartItemsList.visibility = View.VISIBLE
@@ -104,19 +97,11 @@ class MyCartFragment : BaseFragment() {
                 adapter = cartListAdapter
             }
 
-            var subTotal: Double = 0.0
-            var shippingCharge = 30000
-            for (item in mCartListItems) {
-                val availableQuantity = item.stock_quantity.toInt()
-                if (availableQuantity > 0) {
-                    val price = item.price.toDouble()
-                    val quantity = item.cart_quantity.toInt()
-                    subTotal += (price * quantity)
-                }
-
-            }
+            val subTotal = CartControler().subTotal(mCartListItems)
+            val shippingCharge = 30000
             binding.tvSubTotal.text = "${subTotal}đ"
             binding.tvShippingCharge.text = "${shippingCharge}đ"
+            binding.tvTotalAmount.text =  "${subTotal+shippingCharge}đ"
         } else {
             binding.rvCartItemsList.visibility = View.INVISIBLE
             binding.tvNoCartItemFound.visibility = View.VISIBLE

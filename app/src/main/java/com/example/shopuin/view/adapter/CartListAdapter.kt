@@ -1,4 +1,4 @@
-package com.example.shopuin.adapter
+package com.example.shopuin.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.shopuin.R
 import com.example.shopuin.controler.CartControler
 import com.example.shopuin.databinding.ItemCartBinding
-import com.example.shopuin.fragment.MyCartFragment
+import com.example.shopuin.view.fragment.MyCartFragment
 import com.example.shopuin.models.CartItem
 
 

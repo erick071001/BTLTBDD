@@ -1,4 +1,4 @@
-package com.example.shopuin.activities
+package com.example.shopuin.view.activities
 
 import android.content.Intent
 import android.os.Build
@@ -9,7 +9,6 @@ import android.view.WindowManager
 import android.widget.*
 import com.example.shopuin.R
 import com.example.shopuin.controler.UserControler
-import com.example.shopuin.firebase.FirestoreClass
 import com.example.shopuin.databinding.ActivityRegisterBinding
 
 
@@ -161,7 +160,7 @@ class RegisterActivity : BaseActivity() {
     }
 
     fun userRegistrationSuccess(){
-        MyToast.show(this,"Đăng ký tài khoản thành công",false)
+        MyToast.show(this, "Đăng ký tài khoản thành công", false)
 
     }
 

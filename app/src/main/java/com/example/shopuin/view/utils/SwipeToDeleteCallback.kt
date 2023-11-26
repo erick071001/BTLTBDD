@@ -1,4 +1,4 @@
-package com.example.shopuin.utils
+package com.example.shopuin.view.utils
 
 import android.content.Context
 import android.graphics.*

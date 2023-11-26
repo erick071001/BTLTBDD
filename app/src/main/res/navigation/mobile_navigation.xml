@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.shopuin.fragment.HomeFragment"
+        android:name="com.example.shopuin.view.fragment.HomeFragment"
         android:label="Trang Chính"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_mycart"
-        android:name="com.example.shopuin.fragment.MyCartFragment"
+        android:name="com.example.shopuin.view.fragment.MyCartFragment"
         android:label="Giỏ hàng"
         tools:layout="@layout/fragment_mycart" />
     <fragment
         android:id="@+id/navigation_myoder"
-        android:name="com.example.shopuin.fragment.OrdersFragment"
+        android:name="com.example.shopuin.view.fragment.OrdersFragment"
         android:label="Đơn hàng" />
 
 </navigation>
