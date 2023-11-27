@@ -99,18 +99,6 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             val email: String = binding.etEmail.text.toString().trim() { it <= ' ' }
             val password: String = binding.etPassword.text.toString().trim() { it <= ' ' }
             LoginControler().signInWithEmailAndPassword(this,email, password)
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        UserControler().getUser(this@LoginActivity)
-                    } else {
-                        hideProgressDialog()
-                        showErrorSnackBar(
-                            task.exception!!.message.toString(),
-                            true
-                        )
-                    }
-                }
         }
 
     }

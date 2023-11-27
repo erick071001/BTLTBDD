@@ -5,8 +5,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
 class LoginControler {
-    fun getCurrentUser() : FirebaseUser {
-        return FirebaseAuth.getInstance().currentUser!!
+    fun getCurrentUser() : FirebaseUser? {
+        if (FirebaseAuth.getInstance().currentUser !=null) return FirebaseAuth.getInstance().currentUser
+        else return null
     }
     fun signInWithEmailAndPassword(loginActivity: LoginActivity, email:String, password: String){
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)

@@ -24,37 +24,6 @@ class AddEditAddressActivity : BaseActivity() {
         setContentView(binding.root)
         setupActionBar()
 
-        if (mAddressDetails != null) {
-            if (mAddressDetails!!.id.isNotEmpty()) {
-                binding.tvTitle.text = "Cập nhật địa chỉ"
-                binding.btnSubmitAddress.text = "Cập nhật"
-                binding.etFullName.setText(mAddressDetails?.name)
-                binding.etPhoneNumber.setText(mAddressDetails?.mobileNumber)
-                binding.etAddress.setText(mAddressDetails?.address)
-                binding.etZipCode.setText(mAddressDetails?.city)
-                binding.etAdditionalNote.setText(mAddressDetails?.additionalNote)
-
-                when (mAddressDetails?.type) {
-                    "Home" -> {
-                        binding.rbHome.isChecked = true
-                    }
-
-                    "Office" -> {
-                        binding.rbOffice.isChecked = true
-                    }
-
-                    else -> {
-                        binding.rbOther.isChecked = true
-
-                        binding.etOtherDetails.visibility = View.VISIBLE
-                        binding.etOtherDetails.setText(mAddressDetails?.otherDetails)
-                    }
-                }
-
-            }
-        }
-
-
         binding.rgType.setOnCheckedChangeListener { _, checkedId ->
             if (checkedId == R.id.rb_other) {
                 binding.etOtherDetails.visibility = View.VISIBLE
