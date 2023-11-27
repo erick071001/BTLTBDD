@@ -24,11 +24,6 @@ class AddEditAddressActivity : BaseActivity() {
         setContentView(binding.root)
         setupActionBar()
 
-
-        if (intent.hasExtra("AddressDetails")) {
-            mAddressDetails = intent.getParcelableExtra("AddressDetails")
-        }
-
         if (mAddressDetails != null) {
             if (mAddressDetails!!.id.isNotEmpty()) {
                 binding.tvTitle.text = "Cập nhật địa chỉ"
@@ -109,7 +104,6 @@ class AddEditAddressActivity : BaseActivity() {
 
 
         if (validateData()) {
-            // show the progress dialog
             showProgressDialog("Loading")
 
             val addressType: String = when {
@@ -123,29 +117,7 @@ class AddEditAddressActivity : BaseActivity() {
                     "Other"
                 }
             }
-
-            val addressModel = Address(
-                UserControler().getCurrentUserId(),
-                fullName,
-                phoneNumber,
-                address,
-                zipCode,
-                additionalNote,
-                addressType,
-                otherDetails,
-                System.currentTimeMillis().toString()
-            )
-
-            // only update the address in the Firestore when it's not empty
-            if (mAddressDetails != null && mAddressDetails!!.id.isNotEmpty()) {
-               UserControler().updateAddress(
-                    this,
-                    addressModel, mAddressDetails!!.id
-                )
-            } else {
-                UserControler().addAddress(this@AddEditAddressActivity, addressModel)
-
-            }
+            UserControler().addAddress(fullName,phoneNumber,address,zipCode,additionalNote,addressType,otherDetails,this@AddEditAddressActivity)
 
 
         }

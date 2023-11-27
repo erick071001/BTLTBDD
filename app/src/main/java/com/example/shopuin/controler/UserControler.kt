@@ -72,8 +72,20 @@ class UserControler {
         activity.successAddressListFromFirestore(addressList)
     }
 
-    fun  addAddress(activity: AddEditAddressActivity, addressInfo: Address){
-        FirestoreClass().addAddress(this,activity, addressInfo)
+    fun  addAddress(fullName : String,phoneNumber: String,address: String,city : String, additionalNote : String
+                    ,addressType : String,otherDetails : String, activity: AddEditAddressActivity){
+        val addressModel = Address(
+            UserControler().getCurrentUserId(),
+            fullName,
+            phoneNumber,
+            address,
+            city,
+            additionalNote,
+            addressType,
+            otherDetails,
+            System.currentTimeMillis().toString()
+        )
+        FirestoreClass().addAddress(this,activity, addressModel)
     }
 
     fun updateAddress(activity: AddEditAddressActivity, addressInfo: Address, addressId: String){
